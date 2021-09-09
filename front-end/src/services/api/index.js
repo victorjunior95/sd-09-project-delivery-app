@@ -1,5 +1,6 @@
 const BASE_URL = 'http://localhost:3001';
 const contentType = 'application/json';
+const POST = 'POST';
 
 export const fetchToLogin = (email, password, setInvalidUser, setRedirectTo) => {
   const body = {
@@ -13,7 +14,7 @@ export const fetchToLogin = (email, password, setInvalidUser, setRedirectTo) => 
 
   fetch(`${BASE_URL}/login`, {
     headers: myHeadersToLogin,
-    method: 'POST',
+    method: POST,
     body: JSON.stringify(body),
   })
     .then((res) => res.json())
@@ -28,8 +29,30 @@ export const fetchToLogin = (email, password, setInvalidUser, setRedirectTo) => 
     });
 };
 
+export const getOrders = async (payload, setOrders, setError) => {
+  const { token, email } = payload;
+
+  const Myheaders = {
+    'Content-Type': 'application/json',
+    Authorization: token,
+  };
+
+  await fetch(`http://localhost:3001/seller/orders/${email}`, {
+    headers: Myheaders,
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        setError(response.message);
+      } else {
+        setOrders(response);
+      }
+    });
+};
+
 export const fetchToRegister = (payload, setInvalidUser, setRedirectTo) => {
-  const { name, email, password } = payload;
+  const { name, email } = payload;
   const body = {
     name,
     email,
@@ -42,7 +65,7 @@ export const fetchToRegister = (payload, setInvalidUser, setRedirectTo) => {
 
   fetch('http://localhost:3001/register', {
     headers: myHeadersToRegister,
-    method: 'POST',
+    method: POST,
     body: JSON.stringify(body),
   })
     .then((res) => res.json())
@@ -87,7 +110,7 @@ export const createUser = (
   };
 
   fetch('http://localhost:3001/users', {
-    method: 'POST',
+    method: POST,
     headers: {
       Accept: contentType,
       'Content-Type': contentType,
@@ -119,5 +142,21 @@ export const deleteUser = async (token, id, setDeleteUser) => {
     .then((obj) => {
       console.log(obj);
       setDeleteUser(true);
+    });
+};
+
+export const getUsersRole = async (token, role, setAllSellers) => {
+  await fetch(`${BASE_URL}/users/byrole/${role}`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: contentType,
+        'Content-Type': contentType,
+        Authorization: token,
+      },
+    }).then((res) => res.json())
+    .then((jsoned) => {
+      console.log(jsoned);
+      setAllSellers(jsoned);
     });
 };
