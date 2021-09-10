@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
-import Context from '../../context';
+import React from 'react';
+import Navbar from '../../components/navbar';
 import OrderTable from '../../components/orderTable';
+import FormAdressFull from '../../components/formAdressFull';
 
 const CheckOut = () => {
-  const { cart } = useContext(Context);
-  console.log(cart);
+  const { name } = JSON.parse(localStorage.getItem('user'));
+  const paginas = [
+    'PRODUTOS *customer_products__element-navbar-link-products */customer/products',
+    'MEUS PEDIDOS*customer_products__element-navbar-link-orders */customer/orders',
+  ];
 
   return (
     <div>
-      <p>Blá, blá</p>
+      <Navbar abas={ paginas } user={ name } />
       <OrderTable />
+      <FormAdressFull />
     </div>
   );
 };

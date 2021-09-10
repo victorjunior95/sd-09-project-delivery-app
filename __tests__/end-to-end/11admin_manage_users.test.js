@@ -111,17 +111,18 @@ describe(requirement(40), () => {
 
 describe(requirement(41), () => {
   const people = createUserForAdm(lengthRules);
+  console.log(people);
 
   test(`O avaliador tentará realizar o fluxo de cadastro com ${people.length} pessoas usuárias, validando-os no banco`, async () => {
     showPeopleList(people, global.__TESTDESC__);
-    
+
     expect(
-      await action.admin.register(page, { database, people })
+      await action.admin.register(page, { database, people }) 
     ).toBeTruthy();
   });
 });
 
-describe(requirement(42), () => {
+describe.only(requirement(42), () => {
   const testUser = newUser({ passwordLen: lengthRules.password });
   testUser.role = Math.round(Math.random()) ? "seller" : "customer";
 

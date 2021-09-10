@@ -17,7 +17,22 @@ const register = rescue(async(req, res) => {
   return res.status(201).json({ token });
 });
 
+const sellers = rescue(async(_req, res) => {
+  const allSellers = await User.getAllSellers();
+  return res.status(200).json(allSellers);
+});
+
+const registerByAdmin = rescue(async(req, res) => {
+  const { name, email, password, role } = req.body;
+
+  await User.registerUserByAdmin(name, email, password, role);
+
+  return res.status(201).json({ message: 'Cadastrado com sucesso' });
+});
+
 module.exports = {
   login,
   register,
+  sellers,
+  registerByAdmin,
 };

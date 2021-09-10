@@ -1,20 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Context from '../../context';
 import formatPrice from '../../services/formatPrice';
 import * as S from './styled';
+import Context from '../../context';
 
 const CardProduct = ({ image, name, price, id }) => {
+  const [valeuInput, setValeuInput] = useState(0);
+  const [quantity, setQuantity] = useState(0);
   const { cart, setCart } = useContext(Context);
   const { totalValue, products } = cart;
-  const [quantity, setQuantity] = useState(0);
-
   const updateCart = ({ target }) => {
     if (target.name === 'increase') {
-      const exists = products.findIndex((item) => item.id === id);
       const notExist = -1;
+      const exists = products.findIndex((item) => item.id === id);
 
-      setQuantity(quantity + 1);
+      setQuantity(parseFloat(quantity) + parseFloat(1));
 
       const newCart = { totalValue: totalValue + price, products };
 
@@ -24,22 +24,68 @@ const CardProduct = ({ image, name, price, id }) => {
 
       if (exists > notExist) newCart.products[exists].quantity += 1;
 
+      localStorage.setItem('cart', JSON.stringify(newCart));
       setCart(newCart);
     }
 
     if (target.name === 'decrease') {
       if (quantity === 0) return;
       const indexItem = products.findIndex((item) => item.id === id);
-      const itemToUpdate = products[indexItem];
 
       const newCart = { totalValue: totalValue - price, products };
 
-      if (quantity === 1) newCart.products.splice(itemToUpdate, 1);
+      if (quantity === 1) newCart.products.splice(indexItem, 1);
       if (quantity > 1) newCart.products[indexItem].quantity -= 1;
 
+      localStorage.setItem('cart', JSON.stringify(newCart));
       setQuantity(quantity - 1);
       setCart(newCart);
     }
+  };
+
+  useEffect(() => {
+    setValeuInput(quantity * price);
+    const test = JSON.parse(localStorage.getItem('cart'));
+    console.log('test', test);
+    if (!test) {
+      localStorage.setItem('cart', JSON.stringify({ products: [], totalValue: 0 }));
+    }
+  }, [quantity, valeuInput]);
+
+  const initPage = () => {
+    const localCart = JSON.parse(localStorage.getItem('cart'));
+    setCart(localCart);
+  };
+
+  useEffect(() => {
+    initPage();
+  }, []);
+
+  const updateQuantity = ({ target }) => {
+    if (typeof target.value !== 'string') return;
+    const newValue = Number(target.value);
+
+    const exists = products.findIndex((item) => item.id === id);
+    const notExist = -1;
+
+    const newCart = { totalValue: 0, products };
+
+    if (exists === notExist && quantity > 0) {
+      newCart.products = [
+        ...products,
+        { image, name, price, id, quantity: newValue },
+      ];
+    }
+
+    if (exists > notExist) newCart.products[exists].quantity = newValue;
+
+    newCart.products.forEach((elem) => {
+      newCart.totalValue += (elem.price * elem.quantity);
+    });
+
+    localStorage.setItem('cart', JSON.stringify(newCart));
+    setQuantity(newValue);
+    setCart(newCart);
   };
 
   return (
@@ -67,8 +113,10 @@ const CardProduct = ({ image, name, price, id }) => {
         <input
           type="number"
           data-testid={ `customer_products__input-card-quantity-${id}` }
-          value={ quantity }
-          onChange={ ({ target }) => setQuantity(target.value) }
+          name="input"
+          value={ quantity || 0 }
+          onChange={ updateQuantity }
+          onKeyUp={ updateQuantity }
         />
         <button
           type="button"
