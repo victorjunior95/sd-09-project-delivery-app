@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { string, number, shape } from 'prop-types';
 import AppContext from '../hooks/context';
+import './css/productCard.css';
+import 'bulma/css/bulma.css';
 
 function ProductCard({ product }) {
   const { name, price, index, urlImage, id } = product;
@@ -63,17 +65,20 @@ function ProductCard({ product }) {
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
           onClick={ () => decreasesProduct() }
+          className="button is-warning is-light"
         >
           -
         </button>
         <input
           type="number"
           name={ name }
+          className="input is-small"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ parseInt(stateProduct.quantity, 10).toString() }
           onChange={ handleChange }
         />
         <button
+          className="button is-warning is-light"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
           onClick={ addProduct }

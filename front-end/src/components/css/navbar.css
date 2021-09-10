@@ -1,6 +1,6 @@
 .navbar {
   align-items: center;
-  background-color: #2a3957;
+  background-color: #CB761D;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -13,20 +13,28 @@
 
 .navbar a {
   color: #f2f2f2;
-  display: block;
   flex-grow: 1;
-  float: left;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar button {
+  background-color: #CB761D;
+  border: #E89328;
+  color: #f2f2f2;
+  flex-grow: 1;
   padding: 14px 16px;
   text-align: center;
   text-decoration: none;
 }
 
 .navbar p {
-  color: #4287f5;
+  color: black;
   padding-left: 12em;
 }
 
-.navbar a:hover {
-  background: #4287f5;
-  color: black;
+.navbar button:hover, a:hover {
+  background: #E89328;
+  color: 1E1F11;
 }

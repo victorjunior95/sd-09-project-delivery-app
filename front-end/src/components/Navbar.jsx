@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 // import { string } from 'prop-types';
-// import './css/navbar.css';
+import './css/navbar.css';
 
 function Navbar() {
   const { name, role } = JSON.parse(localStorage.getItem('user'));
@@ -18,13 +18,12 @@ function Navbar() {
         { role === 'seller'
           ? null
           : (
-            <button
+            <a
               data-testid="customer_products__element-navbar-link-products"
-              type="button"
-              onClick={ () => router.push('/customer/products') }
+              href="/customer/products"
             >
               Produtos
-            </button>
+            </a>
           )}
       </div>
       <div>
@@ -32,12 +31,12 @@ function Navbar() {
           data-testid="customer_products__element-navbar-link-orders"
           to={ `/${role}/orders` }
         >
-          <button
+          <a
             data-testid="customer_products__element-navbar-link-orders"
-            type="button"
+            href={ `/${role}/orders` }
           >
             Meus Pedidos
-          </button>
+          </a>
         </Link>
       </div>
       <div data-testid="customer_products__element-navbar-user-full-name">
@@ -50,6 +49,7 @@ function Navbar() {
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ handleClick }
+          // className="button"
         >
           Sair
         </button>

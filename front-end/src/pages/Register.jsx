@@ -56,8 +56,8 @@ function RegisterUser() {
   };
 
   return (
-    <div>
-      <form>
+    <div className="Login--main">
+      <form className="Login--main--form">
         <h1>Cadastro</h1>
         <label htmlFor="name-input">
           <input
@@ -66,7 +66,7 @@ function RegisterUser() {
             name="name"
             onChange={ handleChange }
             data-testid="common_register__input-name"
-            className="name-input"
+            className="name-input input"
             placeholder="Seu nome"
           />
         </label>
@@ -78,7 +78,7 @@ function RegisterUser() {
             name="email"
             onChange={ handleChange }
             data-testid="common_register__input-email"
-            className="email-input"
+            className="email-input input"
             placeholder="seu-email@site.com.br"
           />
         </label>
@@ -90,13 +90,13 @@ function RegisterUser() {
             name="password"
             onChange={ handleChange }
             data-testid="common_register__input-password"
-            className="password-input"
+            className="password-input input"
             placeholder="**********"
           />
         </label>
         <br />
         <button
-          className="button-register"
+          className="button-register button is-warning"
           type="button"
           onClick={ submitUser }
           disabled={ !isValid() }
@@ -104,11 +104,11 @@ function RegisterUser() {
         >
           Cadastrar
         </button>
-        <p
+        {/* <p
           data-testid="common_register__element-invalid_register"
         >
           Elemento oculto (mensagem de erro)
-        </p>
+        </p> */}
       </form>
     </div>
   );

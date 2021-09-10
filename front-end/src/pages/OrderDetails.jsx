@@ -5,6 +5,8 @@ import { format } from 'date-fns';
 import Navbar from '../components/Navbar';
 import OrderProducts from '../components/OrderProducts';
 import socket from '../utils/socket';
+import '../css/OrdersDetails.css';
+import 'bulma/css/bulma.css';
 
 function OrderDetails() {
   const { id } = useParams();
@@ -55,7 +57,15 @@ function OrderDetails() {
 
   const maxLengthPad = 4;
 
-  if (!order || !user) return <p>loading...</p>;
+  if (!order || !user) {
+    return (
+      <div>
+        <progress className="progress is-small is-primary" max="100">15%</progress>
+        <progress className="progress is-danger" max="100">30%</progress>
+        <progress className="progress is-medium is-dark" max="100">45%</progress>
+        <progress className="progress is-large is-info" max="100">60%</progress>
+      </div>);
+  }
 
   console.log(`Status: ${order.sale.status}`);
   const buttonsSeller = [
@@ -77,31 +87,38 @@ function OrderDetails() {
   ];
 
   return (
-    <section>
+    <section className="main--details box">
       <Navbar />
-      <h1>Detalhes do pedido</h1>
-      { updated && <span>Status atualizado :) </span> }
-      <header>
-        <h1
-          data-testid={ generateDataTestId('order-id') }
-        >
-          { order.sale.id.toString().padStart(maxLengthPad, '0') }
-        </h1>
-        <p
-          data-testid={ generateDataTestId('seller-name') }
-        >
-          P. Vend:
-          { order.seller.name }
-        </p>
-        <p data-testid={ generateDataTestId('order-date') }>
-          { format(new Date(order.sale.saleDate), 'dd/MM/yyyy') }
-        </p>
-        <p data-testid={ generateDataTestId('delivery-status') }>
-          { !status ? order.sale.status : status }
-        </p>
+      <div className="box">
+        <h1>Detalhes do pedido</h1>
+        { updated && <span>Status atualizado :) </span> }
+      </div>
+      <main className="main--sales box">
+        <div>
+          <h1
+            className="box notification is-warning is-light"
+            data-testid={ generateDataTestId('order-id') }
+          >
+            { order.sale.id.toString().padStart(maxLengthPad, '0') }
+          </h1>
+        </div>
+        <div className="box notification is-warning is-light">
+          <p
+            data-testid={ generateDataTestId('seller-name') }
+          >
+            { `P. Vend: ${order.seller.name}` }
+          </p>
+          <p data-testid={ generateDataTestId('order-date') }>
+            { format(new Date(order.sale.saleDate), 'dd/MM/yyyy') }
+          </p>
+          <p data-testid={ generateDataTestId('delivery-status') }>
+            { !status ? order.sale.status : status }
+          </p>
+        </div>
         { user.role === 'customer' && (
           <button
             type="button"
+            className="button is-success"
             data-testid={ `${user.role}_order_details__button-delivery-check` }
             disabled={ !status
             || status === 'Preparando'
@@ -110,14 +127,13 @@ function OrderDetails() {
             onClick={ () => handleClick('Entregue') }
           >
             Marcar como entregue
-            { console.log(status, 'status') }
           </button>
         )}
         { user.role === 'seller' && (
           buttonsSeller
             .map((value) => renderButtonsSeller(value))
         ) }
-      </header>
+      </main>
       { order.sale.products
       && order.sale.products.map(({ name, quantity, price }, index) => (
         <OrderProducts
@@ -125,9 +141,11 @@ function OrderDetails() {
           data={ { name, index, quantity, price, role: user.role } }
         />
       )) }
-      <p data-testid={ `${user.role}_order_details__element-order-total-price` }>
-        { order.sale.totalPrice.replace(/\./ig, ',') }
-      </p>
+      <div className="notification is-warning">
+        <p data-testid={ `${user.role}_order_details__element-order-total-price` }>
+          { `R$ ${order.sale.totalPrice.replace(/\./ig, ',')}` }
+        </p>
+      </div>
     </section>
   );
 }

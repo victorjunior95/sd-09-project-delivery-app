@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AppContext from '../hooks/context';
+import '../css/Login.css';
+import 'bulma/css/bulma.css';
 
 const axios = require('axios').default;
 
@@ -51,7 +53,7 @@ function Login() {
   };
 
   const createInput = (name, title) => (
-    <div>
+    <div className="Login--main--form Login--main--form--padding">
       <label htmlFor={ name }>{ title }</label>
       <input
         id={ name }
@@ -59,6 +61,7 @@ function Login() {
         type={ name }
         onChange={ handleChange }
         data-testid={ `common_login__input-${name}` }
+        className="input"
       />
     </div>
   );
@@ -84,8 +87,8 @@ function Login() {
   };
 
   return (
-    <div>
-      <form id="form">
+    <div className="Login--main">
+      <form id="form" className="Login--main--form">
         { createInput('email', 'Login') }
         { createInput('password', 'Senha') }
         <button
@@ -93,17 +96,20 @@ function Login() {
           disabled={ !isValid() }
           onClick={ loginFunction }
           data-testid="common_login__button-login"
+          className="button is-primary Login--main--form--padding"
         >
           Login
         </button>
-        <Link to="/register">
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-          >
-            Ainda não tenho conta
-          </button>
-        </Link>
+        {/* <Link to="/register"> */}
+        <button
+          type="button"
+          data-testid="common_login__button-register"
+          className="button Login--main--form--padding is-warning"
+          onClick={ () => (router.push('/register')) }
+        >
+          Ainda não tenho conta
+        </button>
+        {/* </Link> */}
       </form>
       {notFoundError
         ? <p data-testid="common_login__element-invalid-email">O usuário não existe</p>

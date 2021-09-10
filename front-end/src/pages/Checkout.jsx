@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../hooks/context';
 import Navbar from '../components/Navbar';
-import styles from '../css/Checkout.module.css';
-// import '../App.css';
+import 'bulma/css/bulma.css';
+import '../css/Checkout.css';
 
 function Checkout() {
   const {
@@ -87,6 +87,7 @@ function Checkout() {
   const createSpan = (dataTestId, value) => (
     <span
       data-testid={ `customer_checkout__element-order-table-${dataTestId}` }
+      className="span--checkout"
     >
       {value}
     </span>
@@ -95,42 +96,51 @@ function Checkout() {
   return (
     <div className="main">
       <Navbar />
-      <section className={ styles.productsContainer }>
-        <h3>Finalizar Pedido</h3>
-        { filteredCart.map(({ name, price, quantity }, index) => (
-          <div
-            key={ name }
-            data-testid={ `element-order-table-name-${index}` }
-            className={ styles.products }
-          >
-            { createSpan(`item-number-${index}`, itemNumber(index)) }
-            { createSpan(`name-${index}`, name) }
-            { createSpan(`quantity-${index}`, quantity) }
-            { createSpan(`unit-price-${index}`, formatPrice(price)) }
-            { createSpan(`sub-total-${index}`, calcSubTotal(price, quantity)) }
-            <button
-              type="button"
-              onClick={ () => removeItem(name) }
-              data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+      <section className="productsContainer">
+        <div className="box">
+          <h3>Finalizar Pedido</h3>
+        </div>
+        <div>
+          { filteredCart.map(({ name, price, quantity }, index) => (
+            <div
+              key={ name }
+              data-testid={ `element-order-table-name-${index}` }
+              className="box Checkout--products"
             >
-              Remover
-            </button>
-          </div>))}
+              { createSpan(`item-number-${index}`, itemNumber(index)) }
+              { createSpan(`name-${index}`, name) }
+              { createSpan(`quantity-${index}`, quantity) }
+              { createSpan(`unit-price-${index}`, formatPrice(price)) }
+              { createSpan(`sub-total-${index}`, calcSubTotal(price, quantity)) }
+              <button
+                type="button"
+                onClick={ () => removeItem(name) }
+                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                className="button is-danger remove-btn"
+              >
+                Remover
+              </button>
+            </div>))}
+        </div>
         <div
           data-testid="customer_checkout__element-order-total-price"
+          className="box total-price notification is-success is-light"
         >
-          {formatPrice(total.toFixed(2))}
+          <h3>
+            {`Valor Total do Pedido: ${formatPrice(total.toFixed(2))}`}
+          </h3>
         </div>
       </section>
-      <section className={ styles.formCheckoutContainer }>
+      <section className="formCheckoutContainer box">
         <h3>Detalhes e Endereço para entrega</h3>
-        <form>
+        <form className="Login--main--form">
           <select
             id="sellerId"
             name="sellerId"
             value={ detailsForm.sellerId }
             data-testid="customer_checkout__select-seller"
             onChange={ handleOptionsChange }
+            className="select forms"
           >
             {sellersId.map(({ id, name }) => (
               <option key={ id } value={ id }>{ name }</option>
@@ -143,6 +153,7 @@ function Checkout() {
             value={ detailsForm.deliveryAddress }
             onChange={ handleChange }
             name="deliveryAddress"
+            className="input forms"
           />
           <input
             type="number"
@@ -151,12 +162,14 @@ function Checkout() {
             value={ detailsForm.deliveryNumber }
             onChange={ handleChange }
             name="deliveryNumber"
+            className="input forms"
           />
 
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
             onClick={ (e) => handleSubmit(e, reformatPrice(total.toFixed(2))) }
+            className="button is-warning forms"
           >
             Finalizar Pedido
           </button>

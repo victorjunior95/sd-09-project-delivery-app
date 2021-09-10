@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import AppContext from '../hooks/context';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
+import 'bulma/css/bulma.css';
 
 function Products() {
   const {
@@ -61,7 +62,10 @@ function Products() {
     return (
       <div className="main">
         <Navbar />
-        <main><h1>loading...</h1></main>
+        <progress className="progress is-small is-primary" max="100">15%</progress>
+        <progress className="progress is-danger" max="100">30%</progress>
+        <progress className="progress is-medium is-dark" max="100">45%</progress>
+        <progress className="progress is-large is-info" max="100">60%</progress>
       </div>
     );
   }
@@ -84,7 +88,7 @@ function Products() {
       <button
         data-testid="customer_products__button-cart"
         type="button"
-        className="button-cart"
+        className="button-cart button"
         onClick={ handleClick }
         disabled={ disable }
       >

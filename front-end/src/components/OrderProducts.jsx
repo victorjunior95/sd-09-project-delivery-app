@@ -12,6 +12,7 @@ function OrderProducts({ data }) {
     <span
       data-testid={ `${role}_order_details__element-order-table-${dataTestId}` }
     >
+      {' '}
       {value}
     </span>
   );
@@ -21,21 +22,9 @@ function OrderProducts({ data }) {
     return indexNumber;
   };
 
-  // const calcTotalPrice = (subtotal) => {
-  //   total += subtotal;
-  // };
-
-  // const formatPrice = (priceProduct) => priceProduct.replace(/\./ig, ',');
-
-  // const calcSubTotal = () => {
-  //   const subtotal = Number(price * quantity);
-  //   calcTotalPrice(subtotal);
-  //   return formatPrice(subtotal.toFixed(2));
-  // };
-
   return (
-    <section>
-      <main>
+    <section className="box">
+      <main className="box">
         { createSpan('item-number', itemNumber(index)) }
         { createSpan(`name-${index}`, name) }
         { createSpan(`quantity-${index}`, quantity) }

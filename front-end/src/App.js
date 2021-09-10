@@ -7,7 +7,8 @@ import OrderDetails from './pages/OrderDetails';
 import Checkout from './pages/Checkout';
 import Products from './pages/Products';
 import Notfound from './pages/Notfound';
-// import './App.css';
+// import 'bulma/css/bulma.css';
+import './App.css';
 
 function App() {
   return (

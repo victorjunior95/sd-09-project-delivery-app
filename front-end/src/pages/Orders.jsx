@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import Navbar from '../components/Navbar';
 import SalesCard from '../components/SalesCard';
 import AppContext from '../hooks/context';
-// import '../App.css';
+import 'bulma/css/bulma.css';
 
 function Orders() {
   const { sales, getSaleById, user } = useContext(AppContext);
@@ -17,7 +17,7 @@ function Orders() {
     <div className="main">
       <Navbar />
       <main>
-        <ul>
+        <ul className="box">
           {
             sales.map(({
               deliveryNumber,

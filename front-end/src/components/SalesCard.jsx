@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { string, number, shape } from 'prop-types';
+import 'bulma/css/bulma.css';
 
 function SalesCard({ sale, role }) {
   const {
@@ -17,45 +18,49 @@ function SalesCard({ sale, role }) {
   const maxLenghPad = 4;
 
   return (
-    <div>
+    <div className="box">
       <li
         key={ index }
-        className="main--sales"
       >
-        <Link
-          to={ `/${role}/orders/${id}` }
-        >
-          <h4
-            data-testid={ `${role}_orders__element-order-id-${id}` }
+        <div className="notification is-warning is-light box">
+          <Link
+            to={ `/${role}/orders/${id}` }
           >
-            Pedido
-            { id.toString().padStart(maxLenghPad, '0') }
-          </h4>
-        </Link>
-        <Link
-          to={ `/${role}/orders/${id}` }
-        >
-          <h4
-            data-testid={ `${role}_orders__element-delivery-status-${id}` }
+            <h4
+              data-testid={ `${role}_orders__element-order-id-${id}` }
+            >
+              { `Pedido ${id.toString().padStart(maxLenghPad, '0')}` }
+            </h4>
+          </Link>
+        </div>
+        <div className="notification is-link is-light">
+          <Link
+            to={ `/${role}/orders/${id}` }
           >
-            { status }
+            <h4
+              data-testid={ `${role}_orders__element-delivery-status-${id}` }
+            >
+              { `Status de envio: ${status}` }
+            </h4>
+          </Link>
+        </div>
+        <div className="notification is-warning is-light">
+          <h4
+            data-testid={ `${role}_orders__element-order-date-${id}` }
+          >
+            { `Data do Pedido: ${format(new Date(saleDate), 'dd/MM/yyyy')}` }
           </h4>
-        </Link>
-        <h4
-          data-testid={ `${role}_orders__element-order-date-${id}` }
-        >
-          { format(new Date(saleDate), 'dd/MM/yyyy') }
-        </h4>
-        <h4
-          data-testid={ `${role}_orders__element-card-address-${id}` }
-        >
-          { `${deliveryAddress}, ${deliveryNumber}`}
-        </h4>
-        <h4
-          data-testid={ `${role}_orders__element-card-price-${id}` }
-        >
-          { totalPrice.replace(/\./ig, ',') }
-        </h4>
+          <h4
+            data-testid={ `${role}_orders__element-card-address-${id}` }
+          >
+            { `Endereço de entrega: ${deliveryAddress}, ${deliveryNumber}`}
+          </h4>
+          <h4
+            data-testid={ `${role}_orders__element-card-price-${id}` }
+          >
+            { `Valor do Pedido: R$ ${totalPrice.replace(/\./ig, ',')}` }
+          </h4>
+        </div>
       </li>
     </div>
   );
