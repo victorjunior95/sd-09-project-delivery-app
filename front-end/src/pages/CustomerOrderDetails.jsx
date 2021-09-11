@@ -7,6 +7,7 @@ import api from '../services/api';
 import Navbar from '../components/Navbar';
 import ProductsTable from '../components/ProductsTable';
 import transformDate from '../utils/transformDate';
+import CardTotal from '../components/CardTotal';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -60,21 +61,13 @@ function CustomerOrderDetails() {
     <div>
       <Navbar role={ userData.role } />
 
-      <div className="container">
+      <div className="container-box">
         <p className="mt-10 title-box">Detalhe do Pedido</p>
         <div className="head-pedido">
-          <p data-testid={ dataTestIds[37] }>
-            { myOrder.id }
-          </p>
-          <p data-testid={ dataTestIds[38] }>
-            { myOrder['seller.name'] }
-          </p>
-          <p data-testid={ dataTestIds[39] }>
-            { myOrder.saleDate }
-          </p>
-          <p data-testid={ dataTestIds[40] }>
-            { myOrder.status }
-          </p>
+          <p data-testid={ dataTestIds[37] }>{myOrder.id}</p>
+          <p data-testid={ dataTestIds[38] }>{myOrder['seller.name']}</p>
+          <p data-testid={ dataTestIds[39] }>{myOrder.saleDate}</p>
+          <p data-testid={ dataTestIds[40] }>{myOrder.status}</p>
           {/* Esse botão vai ter que ser utilizado na hora de fazer o socket */}
           <button
             type="button"
@@ -89,14 +82,10 @@ function CustomerOrderDetails() {
         </div>
         <div className="box-border-90 flex-col">
           <ProductsTable listItems={ myItems } testIds={ customerDataTestIds } />
-          <p className="total-order">
-            R$
-            <span
-              data-testid={ dataTestIds[46] }
-            >
-              { `${myOrder.totalPrice}` }
-            </span>
-          </p>
+          <CardTotal
+            dataTestId={ dataTestIds[46] }
+            totalCart={ `${myOrder.totalPrice}` }
+          />
         </div>
       </div>
     </div>

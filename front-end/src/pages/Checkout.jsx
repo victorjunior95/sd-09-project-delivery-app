@@ -66,7 +66,7 @@ function Checkout() {
   return (
     <main>
       <Navbar role={ user.role } />
-      <div className="container">
+      <div className="container-box">
         <p className="mt-10 title-box">Finalizar Pedido</p>
         <div className="box-border-90 flex-col">
           <CheckoutTable cartData={ cartData } />

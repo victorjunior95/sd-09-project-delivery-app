@@ -198,7 +198,7 @@
   border-bottom: 5px solid white;
 }
 
-.container {
+.container-box {
   display: flex;
   flex-direction: column;
   align-items: center;

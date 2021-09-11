@@ -7,6 +7,7 @@ import api from '../services/api';
 import Navbar from '../components/Navbar';
 import ProductsTable from '../components/ProductsTable';
 import transformDate from '../utils/transformDate';
+import CardTotal from '../components/CardTotal';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -60,40 +61,38 @@ function SellerOrderDetails() {
   return (
     <div>
       <Navbar role={ userData.role } />
-      <p>Detalhe do Pedido</p>
-      <div>
-        <p data-testid={ dataTestIds[54] }>{ myOrder.id }</p>
-        <p data-testid={ dataTestIds[56] }>{ myOrder.saleDate }</p>
-        <p data-testid={ dataTestIds[55] }>{ myOrder.status }</p>
-        <button
-          type="button"
-          data-testid={ dataTestIds[57] }
-          value="Preparando"
-          disabled={ myOrder.status !== 'Pendente' }
-          onClick={ clickChangeSaleStatus }
-        >
-          PREPARAR PEDIDO
-        </button>
-        <button
-          type="button"
-          data-testid={ dataTestIds[58] }
-          value="Em Trânsito"
-          disabled={ myOrder.status !== 'Preparando' }
-          onClick={ clickChangeSaleStatus }
-        >
-          SAIU PARA ENTREGA
-        </button>
-      </div>
-      <ProductsTable listItems={ myItems } testIds={ sellerDataTestIds } />
-      <div>
-        <p>
-          R$
-          <span
-            data-testid={ dataTestIds[64] }
-          >
-            { `${myOrder.totalPrice}` }
-          </span>
-        </p>
+      <div className="container-box">
+        <p className="mt-10 title-box"> Detalhe do Pedido</p>
+        <div className="box-border-90 flex-col">
+          <div>
+            <p data-testid={ dataTestIds[54] }>{myOrder.id}</p>
+            <p data-testid={ dataTestIds[56] }>{myOrder.saleDate}</p>
+            <p data-testid={ dataTestIds[55] }>{myOrder.status}</p>
+            <button
+              type="button"
+              data-testid={ dataTestIds[57] }
+              value="Preparando"
+              disabled={ myOrder.status !== 'Pendente' }
+              onClick={ clickChangeSaleStatus }
+            >
+              PREPARAR PEDIDO
+            </button>
+            <button
+              type="button"
+              data-testid={ dataTestIds[58] }
+              value="Em Trânsito"
+              disabled={ myOrder.status !== 'Preparando' }
+              onClick={ clickChangeSaleStatus }
+            >
+              SAIU PARA ENTREGA
+            </button>
+          </div>
+          <ProductsTable listItems={ myItems } testIds={ sellerDataTestIds } />
+          <CardTotal
+            dataTestId={ dataTestIds[64] }
+            totalCart={ `${myOrder.totalPrice}` }
+          />
+        </div>
       </div>
     </div>
   );
