@@ -60,8 +60,8 @@ function CustomerOrderDetails() {
     <div>
       <Navbar role={ userData.role } />
 
-      <div className="pedido">
-        <p className="mt-10 title-table-pedidos">Detalhe do Pedido</p>
+      <div className="container">
+        <p className="mt-10 title-box">Detalhe do Pedido</p>
         <div className="head-pedido">
           <p data-testid={ dataTestIds[37] }>
             { myOrder.id }
@@ -87,9 +87,9 @@ function CustomerOrderDetails() {
             MARCAR COMO ENTREGUE
           </button>
         </div>
-        <div className="table-pedido">
+        <div className="box-border-90 flex-col">
           <ProductsTable listItems={ myItems } testIds={ customerDataTestIds } />
-          <p className="total-value total-value-p">
+          <p className="total-order">
             R$
             <span
               data-testid={ dataTestIds[46] }

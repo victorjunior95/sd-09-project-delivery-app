@@ -35,15 +35,19 @@ function ProductsTable({ cartData }) {
       <tbody className="table-body">
         {cartData.map((item, index) => (
           <tr key={ index } className="table-tr">
-            <td className="t-item" data-testid={ testIds[22] + index }>{index + 1}</td>
-            <td className="t-desc" data-testid={ testIds[23] + index }>{item.name}</td>
-            <td className="t-quantity" data-testid={ testIds[24] + index }>
+            <td className="t-item" data-testid={ testIds[22] + index }>
+              {index + 1}
+            </td>
+            <td className="t-desc w-3/4" data-testid={ testIds[23] + index }>
+              {item.name}
+            </td>
+            <td className="bg-green-dark" data-testid={ testIds[24] + index }>
               {item.quantity}
             </td>
-            <td className="t-price-un" data-testid={ testIds[25] + index }>
+            <td className="bg-purple" data-testid={ testIds[25] + index }>
               {item.unitPrice.replace('.', ',')}
             </td>
-            <td className="t-subtotal" data-testid={ testIds[26] + index }>
+            <td className="bg-blue" data-testid={ testIds[26] + index }>
               {item.subTotal.replace('.', ',')}
             </td>
             <td>
@@ -51,7 +55,7 @@ function ProductsTable({ cartData }) {
                 buttonText="Remover"
                 onClick={ () => handleRemove(item.productId) }
                 dataTestId={ testIds[27] + index }
-                classStyle="table-btn"
+                classStyle="table-btn bg-green-ligth"
               />
             </td>
           </tr>

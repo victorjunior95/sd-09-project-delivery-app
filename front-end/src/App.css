@@ -180,13 +180,14 @@
 .table-container {
   table-layout: auto;
   background: white;
-  width: 95%;
+  width: 99%;
 }
 
 .table-head {
   background: white;
   border: 10px solid white;
-  font-size: 0.8em;
+  font-size: 0.6em;
+  font-family: Roboto;
 }
 
 .table-body {
@@ -197,26 +198,27 @@
   border-bottom: 5px solid white;
 }
 
-.pedido {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.table-pedido {
+.box-border-90 {
   border: 1px solid rgba(177, 194, 190, 1);
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 90%;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
-.title-table-pedidos {
+.title-box {
   width: 90%;
   font-weight: 700;
 }
 
-.table-pedido-endereco {
+.box-border-90-around {
   border: 1px solid rgba(177, 194, 190, 1);
   width: 90%;
   display: flex;
@@ -233,34 +235,31 @@
 
 .t-item {
   background: #57bf71;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .t-desc {
-  background: #F2FFFC;
-  width: 55%;
+  background: #EAF1EF;
   text-align: left;
-
 }
 
-.t-quantity {
+.bg-green-dark {
   background: #036b52;
   color: white;
 }
 
-.t-price-un {
+.bg-purple {
   background: #421981;
   color: white;
 }
 
-.t-subtotal {
+.bg-blue {
   background: #056CF9;
   color: white;
 }
 
 .table-btn {
-  background: #57bf71;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   color: white;
@@ -270,14 +269,19 @@
 
 .total-value {
   color: white;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: 600;
-  text-align: right;
+  width: 97.5%;
   display: flex;
   justify-content: flex-end;
-  width: 95%;
   margin-top: 20px;
   margin-bottom: 14px;
+}
+
+.total-order {
+  background-color: rgba(3, 107, 82, 1);
+  right: 5px;
+  justify-content: flex-end;
 }
 
 .total-value-p {

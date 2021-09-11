@@ -49,7 +49,7 @@ function Admin() {
 
   useEffect(() => {
     verifyNewUserCredentials();
-  }, [newUserData]);
+  }, [newUserData, verifyNewUserCredentials]);
 
   useEffect(() => {
     getAllUsers();
@@ -103,48 +103,52 @@ function Admin() {
   return (
     <main>
       <Navbar role={ adminData.role } />
-      <section>
-        <p>Cadastrar novo usuário</p>
-        <TextInput
-          type="text"
-          name="nome"
-          onChange={ handleChange }
-          labelText="Nome"
-          placeholderText="Nome completo"
-          dataTestId={ dataTestIds[65] }
-        />
-        <TextInput
-          type="text"
-          name="email"
-          onChange={ handleChange }
-          labelText="Email"
-          placeholderText="email@email.com"
-          dataTestId={ dataTestIds[66] }
-        />
-        <TextInput
-          type="password"
-          name="password"
-          onChange={ handleChange }
-          labelText="Senha"
-          placeholderText="senha"
-          dataTestId={ dataTestIds[78] }
-        />
-        <DropDownList
-          options={ options }
-          name="role"
-          dataTestId={ dataTestIds[68] }
-          onChange={ handleChange }
-        />
-        <LargeButton
-          buttonText="CADASTRAR"
-          onClick={ handleClick }
-          isDisabled={ disableButton }
-          dataTestId={ dataTestIds[69] }
-        />
-        { errorMessage && errorDivMessage }
-      </section>
-      <h2>Lista de Usuários</h2>
-      <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
+      <div className="container">
+        <p className="title-box">Cadastrar novo usuário</p>
+        <section className="box-border-90">
+          <TextInput
+            type="text"
+            name="nome"
+            onChange={ handleChange }
+            labelText="Nome"
+            placeholderText="Nome completo"
+            dataTestId={ dataTestIds[65] }
+          />
+          <TextInput
+            type="text"
+            name="email"
+            onChange={ handleChange }
+            labelText="Email"
+            placeholderText="email@email.com"
+            dataTestId={ dataTestIds[66] }
+          />
+          <TextInput
+            type="password"
+            name="password"
+            onChange={ handleChange }
+            labelText="Senha"
+            placeholderText="senha"
+            dataTestId={ dataTestIds[78] }
+          />
+          <DropDownList
+            options={ options }
+            name="role"
+            dataTestId={ dataTestIds[68] }
+            onChange={ handleChange }
+          />
+          <LargeButton
+            buttonText="CADASTRAR"
+            onClick={ handleClick }
+            isDisabled={ disableButton }
+            dataTestId={ dataTestIds[69] }
+          />
+          { errorMessage && errorDivMessage }
+        </section>
+        <h2 className="title-box">Lista de Usuários</h2>
+        <div className="box-border-90">
+          <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
+        </div>
+      </div>
     </main>
   );
 }
