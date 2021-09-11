@@ -103,9 +103,9 @@ function Admin() {
   return (
     <main>
       <Navbar role={ adminData.role } />
-      <div className="container">
-        <p className="title-box">Cadastrar novo usuário</p>
-        <section className="box-border-90">
+      <div className="container-box">
+        <p className="mt-10 title-box">Cadastrar novo usuário</p>
+        <section className="box-border-90 justify-between">
           <TextInput
             type="text"
             name="nome"
@@ -113,6 +113,7 @@ function Admin() {
             labelText="Nome"
             placeholderText="Nome completo"
             dataTestId={ dataTestIds[65] }
+            classStyle="ml-2 mt-2 w-1/5 text-xs"
           />
           <TextInput
             type="text"
@@ -121,6 +122,7 @@ function Admin() {
             labelText="Email"
             placeholderText="email@email.com"
             dataTestId={ dataTestIds[66] }
+            classStyle="ml-2 mt-2 w-1/5 text-xs"
           />
           <TextInput
             type="password"
@@ -129,22 +131,26 @@ function Admin() {
             labelText="Senha"
             placeholderText="senha"
             dataTestId={ dataTestIds[78] }
+            classStyle="ml-2 w-1/5 mt-2 text-xs"
           />
           <DropDownList
             options={ options }
             name="role"
             dataTestId={ dataTestIds[68] }
             onChange={ handleChange }
+            classStyle="ml-2 w-1/5 mt-2 text-xs"
+            labelText="Tipo"
           />
           <LargeButton
             buttonText="CADASTRAR"
             onClick={ handleClick }
             isDisabled={ disableButton }
             dataTestId={ dataTestIds[69] }
+            classStyle="ml-2 mr-2 w-1/5 mt-2 btn-green"
           />
           { errorMessage && errorDivMessage }
         </section>
-        <h2 className="title-box">Lista de Usuários</h2>
+        <h2 className="mt-10 title-box">Lista de Usuários</h2>
         <div className="box-border-90">
           <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
         </div>

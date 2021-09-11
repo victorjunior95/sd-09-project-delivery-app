@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function DropDownList({ name, options, dataTestId, onChange, classStyle }) {
+function DropDownList({ name, options, dataTestId, onChange, classStyle, labelText }) {
   return (
-    <select
-      name={ name }
-      id={ name }
-      data-testid={ dataTestId }
-      onChange={ onChange }
-      classStyle={ classStyle }
-    >
-      <option hidden value="">
-        Escolha uma opção
-      </option>
-      {options.map((option, key) => (
-        <option key={ key } value={ option }>
-          {option}
+    <label className={ classStyle } htmlFor={ name }>
+      { labelText }
+      <select
+        name={ name }
+        id={ name }
+        data-testid={ dataTestId }
+        onChange={ onChange }
+      >
+        <option hidden value="">
+          Escolha uma opção
         </option>
-      ))}
-    </select>
+        {options.map((option, key) => (
+          <option key={ key } value={ option }>
+            {option}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 
@@ -27,7 +29,13 @@ DropDownList.propTypes = {
   dataTestId: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
-  classStyle: PropTypes.string.isRequired,
+  classStyle: PropTypes.string,
+  labelText: PropTypes.string,
+};
+
+DropDownList.defaultProps = {
+  labelText: '',
+  classStyle: '',
 };
 
 export default DropDownList;

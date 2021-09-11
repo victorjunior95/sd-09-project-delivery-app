@@ -26,7 +26,7 @@ function UsersTable({ list, handleRemove }) {
             <td data-testid={ `${dataTestIds[70]}${index}` } className="t-item">
               {index + 1}
             </td>
-            <td data-testid={ `${dataTestIds[71]}${index}` } className="t-desc">
+            <td data-testid={ `${dataTestIds[71]}${index}` } className="t-desc w">
               {user.name}
             </td>
             <td
@@ -35,7 +35,10 @@ function UsersTable({ list, handleRemove }) {
             >
               {user.email}
             </td>
-            <td data-testid={ `${dataTestIds[73]}${index}` } className="bg-purple">
+            <td
+              data-testid={ `${dataTestIds[73]}${index}` }
+              className="bg-purple"
+            >
               {userTypes[user.role]}
             </td>
             <td>
@@ -44,7 +47,7 @@ function UsersTable({ list, handleRemove }) {
                 type="button"
                 value={ user.id }
                 onClick={ handleRemove }
-                className="table-btn bg-blue"
+                className="table-btn bg-blue hover:bg-blue-400"
               >
                 Excluir
               </button>
