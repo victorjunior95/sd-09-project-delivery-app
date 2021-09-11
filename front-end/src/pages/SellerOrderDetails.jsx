@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar';
 import ProductsTable from '../components/ProductsTable';
 import transformDate from '../utils/transformDate';
 import CardTotal from '../components/CardTotal';
+import transformOrderNumber from '../utils/transformOrderNumber';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -19,6 +20,7 @@ function SellerOrderDetails() {
 
   const [myOrder, setMyOrder] = useState([]);
   const [myItems, setMyItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userData = JSON.parse(localStorage.getItem('user'));
 
   const getSale = async (id) => {
@@ -26,6 +28,7 @@ function SellerOrderDetails() {
     const newDate = transformDate(result.saleDate);
     const newPrice = result.totalPrice.replace('.', ',');
     setMyOrder({ ...result, saleDate: newDate, totalPrice: newPrice });
+    setLoading(false);
     return result;
   };
 
@@ -58,6 +61,11 @@ function SellerOrderDetails() {
     getSale(orderId);
   });
 
+  if (loading) {
+    return (
+      <p> Carregando ...</p>
+    );
+  }
   return (
     <div>
       <Navbar role={ userData.role } />
@@ -65,7 +73,7 @@ function SellerOrderDetails() {
         <p className="mt-10 title-box"> Detalhe do Pedido</p>
         <div className="box-border-90 flex-col">
           <div>
-            <p data-testid={ dataTestIds[54] }>{myOrder.id}</p>
+            <p data-testid={ dataTestIds[54] }>{ transformOrderNumber(myOrder.id) }</p>
             <p data-testid={ dataTestIds[56] }>{myOrder.saleDate}</p>
             <p data-testid={ dataTestIds[55] }>{myOrder.status}</p>
             <button
