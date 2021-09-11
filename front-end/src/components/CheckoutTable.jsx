@@ -44,11 +44,17 @@ function ProductsTable({ cartData }) {
             <td className="bg-green-dark" data-testid={ testIds[24] + index }>
               {item.quantity}
             </td>
-            <td className="bg-purple" data-testid={ testIds[25] + index }>
-              {item.unitPrice.replace('.', ',')}
+            <td className="bg-purple">
+              {'R$ '}
+              <span data-testid={ testIds[25] + index }>
+                {item.unitPrice.replace('.', ',')}
+              </span>
             </td>
-            <td className="bg-blue" data-testid={ testIds[26] + index }>
-              {item.subTotal.replace('.', ',')}
+            <td className="bg-blue">
+              {'R$ '}
+              <span data-testid={ testIds[26] + index }>
+                {item.subTotal.replace('.', ',')}
+              </span>
             </td>
             <td>
               <LargeButton

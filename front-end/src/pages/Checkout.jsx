@@ -9,6 +9,7 @@ import api from '../services/api';
 import AppContext from '../context/AppContext';
 import testIds from '../utils/dataTestIds';
 import { getCarrinhoLocalStorage } from '../utils/storage';
+import CardTotal from '../components/CardTotal';
 
 function Checkout() {
   const { totalCart } = useContext(AppContext);
@@ -69,12 +70,7 @@ function Checkout() {
         <p className="mt-10 title-box">Finalizar Pedido</p>
         <div className="box-border-90 flex-col">
           <CheckoutTable cartData={ cartData } />
-          <section className="total-value">
-            <p data-testid={ testIds[28] } className="total-value-p">
-              Total: R$
-              { totalCart }
-            </p>
-          </section>
+          <CardTotal dataTestId="testIds[28]" totalCart={ totalCart } />
         </div>
         <p className="mt-10 title-box">Detalhes e Endereço para Entrega</p>
         <section className="box-border-90 flex-wrap justify-around">
