@@ -1,4 +1,4 @@
-import paths from '../Routes/paths';
+import paths from '../routes/paths';
 import testIds from './testIds';
 
 const pageItems = {

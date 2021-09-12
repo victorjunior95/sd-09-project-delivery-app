@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Routes from './Routes';
+import Routes from './routes';
 import './App.css';
-// import rockGlass from './images/rockGlass.svg';
 
 function App() {
   return (

@@ -48,3 +48,11 @@ export const Option = styled.option``;
 export const Select = styled.select``;
 
 export const Wrapper = styled.div``;
+
+export const Table = styled.table``;
+
+export const TableHeader = styled.th``;
+
+export const Row = styled.tr``;
+
+export const Cell = styled.td``;

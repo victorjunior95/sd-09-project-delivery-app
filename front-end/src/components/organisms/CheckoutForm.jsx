@@ -5,9 +5,13 @@ import { Button, Input, Wrapper } from '../atoms';
 import { productCardPropTypes } from '../../utils/propTypes';
 import CheckoutSelect from '../molecules/CheckoutSelect';
 import useAuthFormInfo from '../../hooks/useAuthFormInfo';
-import { useCustomRoleDataContext, useUserDataContext } from '../../context/contexts';
+import {
+  useCustomRoleActionContext,
+  useCustomRoleDataContext,
+  useUserDataContext,
+} from '../../context/contexts';
 import requestApi from '../../services/api';
-import testIds from '../../utils/testIds';
+import getTestIds from '../../utils/getTestIds';
 
 const InputAddress = styled(Input)``;
 
@@ -18,12 +22,14 @@ const FieldsWrapper = styled(Wrapper)``;
 const CheckoutForm = ({ className }) => {
   const fields = { fields: ['sellerId', 'deliveryAddress', 'deliveryNumber'] };
   const { cart, total: totalPrice } = useCustomRoleDataContext();
-  const { token } = useUserDataContext();
+  const { clearCart } = useCustomRoleActionContext();
+  const { token, role } = useUserDataContext();
   const { authInfo, handleFieldsChange } = useAuthFormInfo(fields, true);
   const { sellerId, deliveryAddress, deliveryNumber } = authInfo;
   const history = useHistory();
+  const testIds = getTestIds(role, 'checkout');
 
-  const finishOrder = async () => {
+  const submitOrder = async () => {
     const data = {
       sellerId: Number(sellerId),
       deliveryAddress,
@@ -33,7 +39,8 @@ const CheckoutForm = ({ className }) => {
     };
     const requestData = { method: 'post', data, endpoint: 'customer/checkout', token };
     const { data: { order: { id } } } = await requestApi(requestData);
-    history.push(`/customer/order/${id}`);
+    clearCart();
+    history.push(`/customer/orders/${id}`);
   };
 
   return (
@@ -47,16 +54,16 @@ const CheckoutForm = ({ className }) => {
           name="deliveryAddress"
           value={ deliveryAddress }
           onChange={ handleFieldsChange }
-          data-testid={ testIds.id30 }
+          data-testid={ testIds.formAddress }
         />
         <InputNumber
           name="deliveryNumber"
           value={ deliveryNumber }
           onChange={ handleFieldsChange }
-          data-testid={ testIds.id31 }
+          data-testid={ testIds.formAddressNumber }
         />
       </FieldsWrapper>
-      <Button onClick={ finishOrder } data-testid={ testIds.id32 } primary>
+      <Button onClick={ submitOrder } data-testid={ testIds.formSubmitOrder } primary>
         Finalizar pedido
       </Button>
     </Wrapper>

@@ -6,7 +6,7 @@ import { Button } from '../atoms';
 import { onlyClassNamePropTypes } from '../../utils/propTypes';
 import { useCustomRoleDataContext } from '../../context/contexts';
 import testIds from '../../utils/testIds';
-import paths from '../../Routes/paths';
+import paths from '../../routes/paths';
 
 const CartTotalButton = ({ className }) => {
   const { total } = useCustomRoleDataContext();

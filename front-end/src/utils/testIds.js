@@ -43,6 +43,7 @@ const testIds = {
   id43: (index) => `customer_order_details__element-order-table-quantity-${index}`,
   id44: (index) => `customer_order_details__element-order-table-sub-total-${index}`,
   id45: (index) => `customer_order_details__element-order-total-price-${index}`,
+  id46: 'customer_order_details__element-order-total-price',
   id47: 'customer_order_details__button-delivery-check',
   id48: (id) => `seller_orders__element-order-id-${id}`,
   id49: (id) => `seller_orders__element-delivery-status-${id}`,

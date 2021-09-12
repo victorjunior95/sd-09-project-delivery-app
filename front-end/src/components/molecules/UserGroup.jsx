@@ -4,7 +4,7 @@ import { Label, Link, Wrapper } from '../atoms';
 import { getThemeColor } from '../../styles/utils';
 import testIds from '../../utils/testIds';
 import { removeCartData, removeUserData } from '../../utils/storage';
-import paths from '../../Routes/paths';
+import paths from '../../routes/paths';
 import { useAuthActionContext, useUserDataContext } from '../../context/contexts';
 import { onlyClassNamePropTypes } from '../../utils/propTypes';
 
