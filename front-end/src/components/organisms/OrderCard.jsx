@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import { Wrapper } from '../atoms';
-import testIds from '../../utils/testIds';
 import { productCardPropTypes } from '../../utils/propTypes';
 import Price from '../molecules/Price';
 import Date from '../molecules/Date';
 import OrderStatus from '../molecules/OrderStatus';
 import OrderId from '../molecules/OrderId';
+import { useUserDataContext } from '../../context/contexts';
+import getTestIds from '../../utils/getTestIds';
 
 const PriceDateWrapper = styled(Wrapper)`
   display: flex;
@@ -19,6 +20,9 @@ const PriceDateWrapper = styled(Wrapper)`
 
 const OrderCard = ({ className, order }) => {
   const { id, totalPrice, saleDate, status } = order;
+  const { role } = useUserDataContext();
+  const testIds = getTestIds(role, 'ordersList');
+
   const history = useHistory();
   const goToOrderDetails = useCallback(
     () => history.push(`/customer/orders/${id}`),
@@ -27,10 +31,10 @@ const OrderCard = ({ className, order }) => {
 
   return (
     <Wrapper className={ className } onClick={ goToOrderDetails }>
-      <OrderId id={ id } testid={ testIds.id33(id) } />
-      <OrderStatus status={ status } testid={ testIds.id34(id) } />
+      <OrderId id={ id } testid={ testIds.orderId(id) } />
+      <OrderStatus status={ status } testid={ testIds.orderDeliveryStatus(id) } />
       <PriceDateWrapper>
-        <Date date={ saleDate } testid={ testIds.id35(id) } />
+        <Date fullYear date={ saleDate } testid={ testIds.orderDate(id) } />
         <Price
           price={ totalPrice }
           testid={ `customer_orders__element-card-price-${id}` }

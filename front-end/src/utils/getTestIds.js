@@ -15,7 +15,25 @@ const contextTextIds = {
       formAddressNumber: testIds.id31,
       formSubmitOrder: testIds.id32,
     },
-    orderDetails: {},
+    ordersList: {
+      orderId: testIds.id33,
+      orderDeliveryStatus: testIds.id34,
+      orderDate: testIds.id35,
+      // orderPrice: testIds.id39,
+    },
+    orderDetails: {
+      productIndex: testIds.id41,
+      productName: testIds.id42,
+      productQuantity: testIds.id43,
+      productUnitPrice: testIds.id44,
+      productSubTotal: testIds.id45,
+      totalPrice: testIds.id46,
+      orderId: testIds.id37,
+      orderSeller: testIds.id38,
+      orderDate: testIds.id39,
+      orderDeliveryStatus: testIds.id40,
+      orderSetDeliveredButton: testIds.id47,
+    },
   },
 };
 

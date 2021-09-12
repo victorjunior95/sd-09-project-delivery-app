@@ -7,16 +7,25 @@ import Date from '../molecules/Date';
 import OrderId from '../molecules/OrderId';
 import OrderSellerName from '../molecules/OrderSellerName';
 import OrderButtonGroup from '../molecules/OrderButtonGroup';
+import { useUserDataContext } from '../../context/contexts';
+import getTestIds from '../../utils/getTestIds';
 
-const OrderStatusBar = ({ className, id, seller, saleDate, status }) => (
-  <Wrapper className={ className }>
-    <OrderId id={ id } />
-    <OrderSellerName name={ seller.name } />
-    <Date fullYear date={ saleDate } />
-    <OrderStatus status={ status } data-testid="unset" />
-    <OrderButtonGroup />
-  </Wrapper>
-);
+const OrderStatusBar = ({ className, id, seller, saleDate, status }) => {
+  const { role } = useUserDataContext();
+  const testIds = getTestIds(role, 'orderDetails');
+
+  return (
+    <Wrapper className={ className }>
+      <OrderId id={ id } testid={ testIds.orderId } />
+      <OrderSellerName name={ seller.name } testid={ testIds.orderSeller } />
+      <Date fullYear date={ saleDate } testid={ testIds.orderDate } />
+      <OrderStatus status={ status } testid={ testIds.orderDeliveryStatus } />
+      <OrderButtonGroup
+        testIds={ { deliveredButtonTestId: testIds.orderSetDeliveredButton } }
+      />
+    </Wrapper>
+  );
+};
 
 export default styled(OrderStatusBar)`
   display: grid;

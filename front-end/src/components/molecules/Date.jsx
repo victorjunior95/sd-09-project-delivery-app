@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { Label } from '../atoms';
 import { getThemeColor } from '../../styles/utils';
 import { productNamePropTypes } from '../../utils/propTypes';
-import convertDate from '../../utils/convertDate';
 
-const Date = ({ className, date, fullYear, testid }) => {
-  const displayedDate = convertDate(date, fullYear);
+const Date = ({ className, date, testid }) => {
+  const displayedDate = moment(date).locale('pt-br').format('DD/MM/YYYY');
 
   return (
     <Label className={ className } data-testid={ testid }>
