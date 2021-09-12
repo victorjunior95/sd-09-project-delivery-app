@@ -7,6 +7,7 @@ import Products from './customer/Products';
 import CostumerOrderDetails from './customer/OrderDetails';
 import CostumerOrders from './customer/Orders';
 import SellerOrders from './seller/Orders';
+import SellerOrderDetails from './seller/OrderDetails';
 
 const common = { Login, Home, NotFound, Register };
 const costumer = {
@@ -17,7 +18,7 @@ const costumer = {
 };
 const seller = {
   Orders: SellerOrders,
-  // OrderDetails,
+  OrderDetails: SellerOrderDetails,
 };
 
 export {

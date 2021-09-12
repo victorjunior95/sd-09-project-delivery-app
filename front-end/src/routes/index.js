@@ -13,7 +13,8 @@ const Routes = () => (
     <Route exact path={ paths.customer.checkout } component={ costumer.Checkout } />
     <Route exact path={ paths.customer.orders } component={ costumer.Orders } />
     <Route path={ paths.customer.orderDetails } component={ costumer.OrderDetails } />
-    <Route path={ paths.seller.orders } component={ seller.Orders } />
+    <Route exact path={ paths.seller.orders } component={ seller.Orders } />
+    <Route path={ paths.seller.orderDetails } component={ seller.OrderDetails } />
     <Route component={ common.NotFound } />
   </Switch>
 );

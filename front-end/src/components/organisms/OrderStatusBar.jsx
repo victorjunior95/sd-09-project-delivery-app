@@ -9,20 +9,24 @@ import OrderSellerName from '../molecules/OrderSellerName';
 import OrderButtonGroup from '../molecules/OrderButtonGroup';
 import { useUserDataContext } from '../../context/contexts';
 import getTestIds from '../../utils/getTestIds';
+import useDetectPage from '../../hooks/useDetectPage';
+import useUpdateOrderStatus from '../../hooks/useOrderStatus';
 
-const OrderStatusBar = ({ className, id, seller, saleDate, status }) => {
+const OrderStatusBar = ({ className, id, seller, saleDate, status: initialStatus }) => {
+  const { isCustomerPage } = useDetectPage();
+  const { status, updateOrderStatus } = useUpdateOrderStatus({ id, initialStatus });
   const { role } = useUserDataContext();
   const testIds = getTestIds(role, 'orderDetails');
 
   return (
     <Wrapper className={ className }>
       <OrderId id={ id } testid={ testIds.orderId } />
-      <OrderSellerName name={ seller.name } testid={ testIds.orderSeller } />
+      { isCustomerPage && (
+        <OrderSellerName name={ seller.name } testid={ testIds.orderSeller } />
+      ) }
       <Date fullYear date={ saleDate } testid={ testIds.orderDate } />
       <OrderStatus status={ status } testid={ testIds.orderDeliveryStatus } />
-      <OrderButtonGroup
-        testIds={ { deliveredButtonTestId: testIds.orderSetDeliveredButton } }
-      />
+      <OrderButtonGroup onClick={ updateOrderStatus } status={ status } />
     </Wrapper>
   );
 };
@@ -30,6 +34,7 @@ const OrderStatusBar = ({ className, id, seller, saleDate, status }) => {
 export default styled(OrderStatusBar)`
   display: grid;
   height: 50px;
+  width: 100%;
   /* background-color: black; */
   /* grid-template-columns: repeat(auto-fit, minmax(20%, 1fr)); */
   grid-template-columns: 1fr 1fr .5fr .7fr 1fr;

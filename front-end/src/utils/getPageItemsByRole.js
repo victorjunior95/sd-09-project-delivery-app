@@ -15,6 +15,14 @@ const pageItems = {
         path: paths.customer.orders,
       },
     ],
+    orderButtonGroup: [
+      {
+        text: 'Marcar como entregue',
+        testId: testIds.id47,
+        enableWith: 'Em Trânsito',
+        stateToSet: 'Entregue',
+      },
+    ],
   },
   seller: {
     navItems: [
@@ -22,6 +30,20 @@ const pageItems = {
         text: 'Pedidos',
         testId: testIds.id12,
         path: paths.seller.orders,
+      },
+    ],
+    orderButtonGroup: [
+      {
+        text: 'Preparar pedido',
+        testId: testIds.id57,
+        enableWith: 'Pendente',
+        stateToSet: 'Preparando',
+      },
+      {
+        text: 'Saiu para entrega',
+        testId: testIds.id58,
+        enableWith: 'Preparando',
+        stateToSet: 'Em Trânsito',
       },
     ],
   },

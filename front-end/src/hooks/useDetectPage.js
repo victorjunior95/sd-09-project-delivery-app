@@ -6,10 +6,11 @@ const useDetectPage = () => {
   const { pathname } = useLocation();
   const { role } = useUserDataContext();
   const isCheckout = pathname === paths.customer.checkout;
-  const isOrderDetails = pathname.includes(paths.customer.orders);
+  const isOrderDetails = pathname.includes('orders');
   const isSellerPage = role === 'seller';
+  const isCustomerPage = role === 'customer';
 
-  return { isCheckout, isOrderDetails, isSellerPage };
+  return { isCheckout, isOrderDetails, isSellerPage, isCustomerPage };
 };
 
 export default useDetectPage;
