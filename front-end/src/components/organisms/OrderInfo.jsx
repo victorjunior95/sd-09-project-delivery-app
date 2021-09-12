@@ -17,6 +17,7 @@ const OrderInfo = ({ className, order }) => {
   const products = isCheckout ? order : order.products;
   const { role } = useUserDataContext();
   const testIds = getTestIds(role, isCheckout ? 'checkout' : 'orderDetails');
+  console.log(testIds);
   const { id, seller, saleDate, status, totalPrice } = order;
   const { total } = useCustomRoleDataContext();
   const displayedTotal = convertDecimalsToString(totalPrice || total);

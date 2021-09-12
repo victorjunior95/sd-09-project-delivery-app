@@ -8,7 +8,7 @@ const OrderButtonGroup = ({ className, testIds }) => {
   const { deliveredButtonTestId } = testIds;
   return (
     <Wrapper className={ className }>
-      <Button primary testid={ deliveredButtonTestId }>
+      <Button primary data-testid={ deliveredButtonTestId } disabled>
         Marcar como entregue
       </Button>
     </Wrapper>
