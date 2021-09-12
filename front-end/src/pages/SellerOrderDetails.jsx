@@ -90,7 +90,7 @@ function SellerOrderDetails() {
               className={ `mt-2 btn-generico ${getColorStatus(myOrder.status)}` }
               data-testid={ dataTestIds[55] }
             >
-              {myOrder.status.toUpperCase()}
+              {myOrder.status}
             </p>
             <button
               type="button"

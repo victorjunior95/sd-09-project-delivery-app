@@ -70,7 +70,7 @@ function Checkout() {
         <p className="mt-10 title-box">Finalizar Pedido</p>
         <div className="box-border-90 flex-col">
           <CheckoutTable cartData={ cartData } />
-          <CardTotal dataTestId="testIds[28]" totalCart={ totalCart } />
+          <CardTotal dataTestId={ testIds[28] } totalCart={ totalCart } />
         </div>
         <p className="mt-10 title-box">Detalhes e Endereço para Entrega</p>
         <section className="box-border-90 flex-wrap justify-around">
