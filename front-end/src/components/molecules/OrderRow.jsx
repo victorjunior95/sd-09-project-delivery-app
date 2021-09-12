@@ -1,50 +1,77 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { Cell, Row } from '../atoms';
+import { Button, Cell, Row } from '../atoms';
 import { getThemeColor } from '../../styles/utils';
 import { productNamePropTypes } from '../../utils/propTypes';
 import roundDecimals from '../../utils/roundDecimals';
+import convertDecimalsToString from '../../utils/convertDecimalsToString';
+import { useCustomRoleActionContext, useUserDataContext } from '../../context/contexts';
+import useDetectPage from '../../hooks/useDetectPage';
+import getTestIds from '../../utils/getTestIds';
 
-const ItemNumber = styled(Cell)`
+const CenteredTextCell = styled(Cell)`
   text-align: center;
 `;
+const ItemNumber = styled(CenteredTextCell)``;
 
 const Name = styled(Cell)``;
 
-const Quantity = styled(Cell)`
-  text-align: center;
-`;
+const Quantity = styled(CenteredTextCell)``;
 
-const UnitPrice = styled(Cell)`
-  text-align: center;
-`;
+const UnitPrice = styled(CenteredTextCell)``;
 
-const SubTotal = styled(Cell)`
-  text-align: center;
-`;
+const SubTotal = styled(CenteredTextCell)``;
 
-const STRING_PADDING = 4;
+const Remove = styled(CenteredTextCell)``;
 
-const OrderRow = ({ className, product, index, testid }) => {
-  const { name, price, salesProduct: { quantity } } = product;
+const RemoveButton = styled(Button)``;
+
+const OrderRow = ({
+  className,
+  name,
+  price,
+  quantity,
+  index,
+  id,
+}) => {
   const subTotal = roundDecimals(quantity * Number(price));
-  const paddedSubTotal = `${subTotal}`.padEnd(STRING_PADDING, '0');
-  const displayedSubTotal = paddedSubTotal.replace('.', ',');
-  const displayedPrice = price.replace('.', ',');
+  const displayedSubTotal = convertDecimalsToString(subTotal);
+  const displayedPrice = convertDecimalsToString(price);
+  const { isCheckout } = useDetectPage();
+  const { setCartProduct } = useCustomRoleActionContext();
+  const { role } = useUserDataContext();
+  const testIds = getTestIds(role, isCheckout ? 'checkout' : 'orderDetails');
+
+  const removeProduct = useCallback(
+    () => {
+      setCartProduct({ id, quantity: 0 });
+    },
+    [],
+  );
 
   return (
-    <Row className={ className } data-testid={ testid }>
-      <ItemNumber>{ index }</ItemNumber>
-      <Name>{ name }</Name>
-      <Quantity>{ quantity }</Quantity>
+    <Row className={ className }>
+      <ItemNumber data-testid={ testIds.productIndex(index) }>{ index + 1 }</ItemNumber>
+      <Name data-testid={ testIds.productName(index) }>{ name }</Name>
+      <Quantity data-testid={ testIds.productQuantity(index) }>{ quantity }</Quantity>
       <UnitPrice>
         { 'R$ ' }
-        { displayedPrice }
+        <span data-testid={ testIds.productUnitPrice(index) }>{ displayedPrice }</span>
       </UnitPrice>
       <SubTotal>
         { 'R$ ' }
-        { displayedSubTotal }
+        <span data-testid={ testIds.productSubTotal(index) }>{ displayedSubTotal }</span>
       </SubTotal>
+      { isCheckout && (
+        <Remove>
+          <RemoveButton
+            onClick={ removeProduct }
+            data-testid={ testIds.productRemoveButton(index) }
+          >
+            Remover
+          </RemoveButton>
+        </Remove>
+      ) }
     </Row>
   );
 };

@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
-import { useUserDataContext } from '../context/contexts';
+import {
+  useRequestActionContext,
+  useUserDataContext,
+} from '../context/contexts';
 import requestApi from '../services/api';
 
-const useResquestItems = ({ endpoint, responseKey }) => {
-  const [items, setItems] = useState(() => []);
+const useResquestItems = ({ endpoint, responseKey, initialState = [] }) => {
+  const [items, setItems] = useState(() => initialState);
   const { token } = useUserDataContext();
+  const toggleRequesting = useRequestActionContext();
 
+  toggleRequesting();
   useEffect(() => {
     const requestProducts = async () => {
       const { data: { [responseKey]: requestedItems } } = await requestApi(
         { method: 'get', endpoint, token },
       );
-      console.log('requestedItems', requestedItems);
       setItems(requestedItems);
+      toggleRequesting();
     };
     requestProducts();
-  }, [token]);
+  }, []);
 
   return items;
 };

@@ -5,8 +5,8 @@ import { getThemeColor } from '../../styles/utils';
 import { productNamePropTypes } from '../../utils/propTypes';
 import convertDate from '../../utils/convertDate';
 
-const Date = ({ className, date, testid }) => {
-  const displayedDate = convertDate(date);
+const Date = ({ className, date, fullYear, testid }) => {
+  const displayedDate = convertDate(date, fullYear);
 
   return (
     <Label className={ className } data-testid={ testid }>

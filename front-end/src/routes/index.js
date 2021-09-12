@@ -6,10 +6,10 @@ import {
   Register,
   NotFound,
   Checkout,
-} from '../Pages';
-import OrderDetails from '../Pages/CustomerPages/OrderDetails';
-import Orders from '../Pages/CustomerPages/Orders';
-import Products from '../Pages/CustomerPages/Products';
+} from '../pages';
+import OrderDetails from '../pages/customer/OrderDetails';
+import Orders from '../pages/customer/Orders';
+import Products from '../pages/customer/Products';
 
 import paths from './paths';
 

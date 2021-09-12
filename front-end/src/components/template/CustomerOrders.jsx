@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Main } from '../atoms';
 import NavBar from '../organisms/NavBar';
 import { productsArrayPropTypes } from '../../utils/propTypes';
-import CartTotalButton from '../molecules/CartTotalButton';
 import OrdersList from '../organisms/OrdersList';
 
 const CustomerOrders = ({ className, orders }) => (
@@ -22,16 +21,6 @@ export default styled(CustomerOrders)`
   grid-template-rows: 10vh 90vh;
   padding: 3% 8%;
   height: 100%;
-
-  ${CartTotalButton} {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
 `;
 
 CustomerOrders.propTypes = productsArrayPropTypes;

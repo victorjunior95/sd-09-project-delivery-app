@@ -16,6 +16,11 @@ const useCart = () => {
     [],
   );
 
+  const clearCart = useCallback(
+    () => setCart({}),
+    [],
+  );
+
   const total = useMemo(() => Object.values(cart).reduce(
     (totalAcc, { quantity, price }) => {
       const balance = quantity * Number(price) + totalAcc;
@@ -30,7 +35,7 @@ const useCart = () => {
     [cart],
   );
 
-  return { data: { cart, total }, actions: { setCartProduct } };
+  return { data: { cart, total }, actions: { setCartProduct, clearCart } };
 };
 
 export default useCart;

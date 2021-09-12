@@ -1,52 +1,50 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 import {
   AppTitle,
   Button,
   Container,
+  Image,
   Input,
   Label,
   Wrapper,
 } from '../../components';
+import assets from '../../assets';
 import testIds from '../../utils/testIds';
-import redirectByRole from '../../Routes/redirectByRole';
+import paths from '../../routes/paths';
+import redirectByRole from '../../routes/redirectByRole';
 import useAuthentication from '../../hooks/useAuthentication';
 import backendStatus from '../../utils/backendStatus';
-import { registerSchema } from '../../utils/validateInfo';
 import useAuthFormInfo from '../../hooks/useAuthFormInfo';
-import { useUserDataContext } from '../../context/contexts';
+import { loginSchema } from '../../utils/validateInfo';
+import { useAuthDataContext, useUserDataContext } from '../../context/contexts';
 
-const RegisterPage = () => {
+const LoginPage = () => {
   const { authInfo, handleFieldsChange, isValidInfo } = useAuthFormInfo({
-    fields: ['name', 'email', 'password'],
-    validationSchema: registerSchema,
+    fields: ['email', 'password'],
+    validationSchema: loginSchema,
   });
   const { isValidRequest, requestUser } = useAuthentication();
   const { role: userRole } = useUserDataContext();
+  const isAuthenticated = useAuthDataContext();
   const shouldRenderError = isValidRequest === false;
+  const history = useHistory();
 
-  if (isValidRequest) return redirectByRole(userRole);
+  if (isValidRequest || isAuthenticated) return redirectByRole(userRole);
 
   return (
     <Container>
-      <AppTitle>Cadastro</AppTitle>
+      <Image src={ assets.images.logo } />
+      <AppTitle>AppTitle</AppTitle>
       <Wrapper>
         <Label>
-          Nome
-          <Input
-            type="text"
-            name="name"
-            value={ authInfo.name }
-            data-testid={ testIds.id6 }
-            onChange={ handleFieldsChange }
-          />
-        </Label>
-        <Label>
-          Email
+          E-mail
           <Input
             type="email"
             name="email"
             value={ authInfo.email }
-            data-testid={ testIds.id7 }
+            data-testid={ testIds.id1 }
             onChange={ handleFieldsChange }
           />
         </Label>
@@ -56,24 +54,32 @@ const RegisterPage = () => {
             type="password"
             name="password"
             value={ authInfo.password }
-            data-testid={ testIds.id8 }
+            data-testid={ testIds.id2 }
             onChange={ handleFieldsChange }
           />
         </Label>
         <Button
-          data-testid={ testIds.id9 }
+          data-testid={ testIds.id3 }
           onClick={ () => requestUser({
-            validStatus: backendStatus.created,
+            validStatus: backendStatus.ok,
             data: authInfo,
-            endpoint: 'register',
+            endpoint: 'login',
           }) }
           disabled={ isValidInfo }
         >
-          CADASTRAR
+          Login
+        </Button>
+        <Button
+          data-testid={ testIds.id4 }
+          onClick={ () => {
+            history.push(paths.register);
+          } }
+        >
+          Ainda não tenho conta
         </Button>
         { shouldRenderError && (
           <Wrapper
-            data-testid={ testIds.id10 }
+            data-testid={ testIds.id5 }
           >
             Mensagem de erro
           </Wrapper>
@@ -83,4 +89,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

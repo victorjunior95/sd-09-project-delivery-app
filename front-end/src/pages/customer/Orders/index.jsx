@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomerOrders from '../../../components/templates/CustomerOrders';
+import CustomerOrders from '../../../components/template/CustomerOrders';
 import useResquestItems from '../../../hooks/useResquestItems';
 
 const Orders = () => {

@@ -11,13 +11,13 @@ export default createGlobalStyle`
   }
 
   html, body {
-    font-family: Roboto, sans-serif;
     font-weight: 600;
   }
 
   *, *:before, *:after {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
 `;

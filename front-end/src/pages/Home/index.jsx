@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useAuthDataContext, useUserDataContext } from '../../context/contexts';
-import paths from '../../Routes/paths';
-import redirectByRole from '../../Routes/redirectByRole';
+import paths from '../../routes/paths';
+import redirectByRole from '../../routes/redirectByRole';
 
 const HomePage = () => {
   // const { auth: { isAuthenticated }, user } = useContext(AppContext);
