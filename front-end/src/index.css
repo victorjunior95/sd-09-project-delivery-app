@@ -26,6 +26,14 @@ code {
     disabled:opacity-20;
 }
 
+.btn-generico {
+  @apply py-1 px-2 bg-green-500 text-white
+    rounded-lg shadow-md text-sm
+    focus:outline-none focus:ring-2 focus:ring-green-400 
+    focus:ring-opacity-75 h-5 flex items-center
+    disabled:opacity-20;
+}
+
 .btn-entregue {
   @apply py-2 px-4 bg-green-500 text-white
     font-semibold rounded-lg shadow-md 
@@ -45,4 +53,10 @@ input, select {
 .fundo-login {
   @apply w-4/5 rounded shadow-lg
    my-10 p-6 pb-10 bg-gray-100;
+}
+
+.status {
+  @apply py-1 px-2 font-bold
+  rounded-lg shadow-md text-sm
+  h-5 flex items-center
 }

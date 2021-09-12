@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import dataTestIds from '../utils/dataTestIds';
 import transformDate from '../utils/transformDate';
+import { getColorStatus } from '../utils/colorsStatus';
 import transformOrderNumber from '../utils/transformOrderNumber';
 
 function OrderCard({ sale }) {
@@ -16,22 +17,8 @@ function OrderCard({ sale }) {
     status,
   } = sale;
 
-  const getColorStatus = () => {
-    if (status === 'Pendente') {
-      return 'bg-yellow';
-    }
-
-    if (status === 'Preparando') {
-      return 'bg-green-ligth';
-    }
-
-    if (status === 'Entregue') {
-      return 'bg-green';
-    }
-  };
-
   const statusDiv = (userRole) => (
-    <div className={ `pedido-data-value-status ${getColorStatus()}` }>
+    <div className={ `pedido-data-value-status ${getColorStatus(status)}` }>
       <p
         data-testid={
           userRole === 'seller'

@@ -91,7 +91,7 @@ function CustomerOrderDetails() {
             disabled={ myOrder.status !== 'Em Trânsito' }
             value="Entregue"
             onClick={ clickChangeSaleStatus }
-            className="btn-entregue"
+            className="btn"
           >
             MARCAR COMO ENTREGUE
           </button>
