@@ -60,3 +60,7 @@ input, select {
   rounded-lg shadow-md text-sm
   h-5 flex items-center
 }
+
+.table-head {
+  @apply text-xs border-8 border-white
+}

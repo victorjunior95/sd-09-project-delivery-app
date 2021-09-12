@@ -9,6 +9,7 @@ import ProductsTable from '../components/ProductsTable';
 import transformDate from '../utils/transformDate';
 import CardTotal from '../components/CardTotal';
 import transformOrderNumber from '../utils/transformOrderNumber';
+import { getColorStatus } from '../utils/colorsStatus';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -71,32 +72,45 @@ function CustomerOrderDetails() {
 
       <div className="container-box">
         <p className="mt-10 title-box">Detalhe do Pedido</p>
-        <div className="head-pedido">
-          <p data-testid={ dataTestIds[37] }>
-            { transformOrderNumber(myOrder.id) }
-          </p>
-          <p data-testid={ dataTestIds[38] }>
-            { myOrder['seller.name'] }
-          </p>
-          <p data-testid={ dataTestIds[39] }>
-            { myOrder.saleDate }
-          </p>
-          <p data-testid={ dataTestIds[40] }>
-            { myOrder.status }
-          </p>
-          {/* Esse botão vai ter que ser utilizado na hora de fazer o socket */}
-          <button
-            type="button"
-            data-testid={ dataTestIds[47] }
-            disabled={ myOrder.status !== 'Em Trânsito' }
-            value="Entregue"
-            onClick={ clickChangeSaleStatus }
-            className="btn"
-          >
-            MARCAR COMO ENTREGUE
-          </button>
-        </div>
         <div className="box-border-90 flex-col">
+          <div className="flex w-full bg-gray-100">
+            <p
+              className="ml-2 mr-4 mt-1 font-bold text-base"
+              data-testid={ dataTestIds[37] }
+            >
+              { transformOrderNumber(myOrder.id) }
+            </p>
+            <p
+              className="mr-4 mt-1 font-bold text-base"
+              data-testid={ dataTestIds[38] }
+            >
+              { myOrder['seller.name'] }
+            </p>
+            <p
+              className="mr-4 mt-1 font-bold text-base"
+              data-testid={ dataTestIds[39] }
+            >
+              { myOrder.saleDate }
+            </p>
+            <p
+              className={ `mt-2 btn-generico ${getColorStatus(myOrder.status)}` }
+              data-testid={ dataTestIds[40] }
+            >
+              { myOrder.status }
+            </p>
+            {/* Esse botão vai ter que ser utilizado na hora de fazer o socket */}
+            <button
+              type="button"
+              data-testid={ dataTestIds[47] }
+              disabled={ myOrder.status !== 'Em Trânsito' }
+              value="Entregue"
+              onClick={ clickChangeSaleStatus }
+              className="btn-generico ml-auto mr-2 mt-2 mb-2"
+            >
+              MARCAR COMO ENTREGUE
+            </button>
+          </div>
+
           <ProductsTable listItems={ myItems } testIds={ customerDataTestIds } />
           <CardTotal
             dataTestId={ dataTestIds[46] }

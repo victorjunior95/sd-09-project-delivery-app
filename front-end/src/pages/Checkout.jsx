@@ -74,7 +74,7 @@ function Checkout() {
         </div>
         <p className="mt-10 title-box">Detalhes e Endereço para Entrega</p>
         <section className="box-border-90 flex-wrap justify-around">
-          <p className="table-detalhe-title w-1/5">
+          <p className="table-detalhe-title w-1/5 text-xs">
             {' '}
             P.Vendedora Responsável:
             <DropDownList
@@ -91,7 +91,7 @@ function Checkout() {
             labelText="Endereço"
             placeholderText="Travessa Terceira da Castanheira, Bairro Muruci"
             dataTestId={ testIds[30] }
-            classStyle="w-2/4 m-5"
+            classStyle="w-2/4 m-5 text-xs"
           />
           <TextInput
             type="input"
@@ -100,7 +100,7 @@ function Checkout() {
             labelText="Número"
             placeholderText="1234"
             dataTestId={ testIds[31] }
-            classStyle="w-1/5"
+            classStyle="w-1/5 text-xs"
           />
           <LargeButton
             buttonText="FINALIZAR PEDIDO"

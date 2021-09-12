@@ -38,7 +38,7 @@ function ProductsTable({ cartData }) {
             <td className="t-item" data-testid={ testIds[22] + index }>
               {index + 1}
             </td>
-            <td className="t-desc w-3/4" data-testid={ testIds[23] + index }>
+            <td className="t-desc w-1/2" data-testid={ testIds[23] + index }>
               {item.name}
             </td>
             <td className="bg-green-dark" data-testid={ testIds[24] + index }>

@@ -183,13 +183,6 @@
   width: 99%;
 }
 
-.table-head {
-  background: white;
-  border: 10px solid white;
-  font-size: 0.6em;
-  font-family: Roboto;
-}
-
 .table-body {
   text-align: center;
 }
@@ -290,11 +283,11 @@
   padding: 5px;
 }
 
-.head-pedido {
+/* .head-pedido {
   display: flex;
   justify-content: space-between;
   width: 90%;
-}
+} */
 
 .content-card-pedidos {
   display: flex;
