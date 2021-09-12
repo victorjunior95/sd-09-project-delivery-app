@@ -7,7 +7,7 @@ const getRoleRoute = (role) => {
   case 'customer':
     return paths.customer.products;
   case 'seller':
-    return paths.customerProducts;
+    return paths.seller.orders;
   case 'administrator':
     return paths.customerProducts;
   default:

@@ -16,7 +16,15 @@ const pageItems = {
       },
     ],
   },
-  seller: {},
+  seller: {
+    navItems: [
+      {
+        text: 'Pedidos',
+        testId: testIds.id12,
+        path: paths.seller.orders,
+      },
+    ],
+  },
   administrator: {},
 };
 

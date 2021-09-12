@@ -10,6 +10,7 @@ import useCart from '../hooks/useCart';
 
 const roleStates = {
   customer: useCart,
+  seller: useCart,
 };
 
 const CustomRoleProvider = ({ children }) => {
