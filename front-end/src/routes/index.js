@@ -1,28 +1,21 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import {
-  HomePage,
-  Login,
-  Register,
-  NotFound,
-  Checkout,
-} from '../pages';
-import OrderDetails from '../pages/customer/OrderDetails';
-import Orders from '../pages/customer/Orders';
-import Products from '../pages/customer/Products';
+import { common, costumer, seller } from '../pages';
 
 import paths from './paths';
 
 const Routes = () => (
   <Switch>
-    <Route exact path={ paths.home } component={ HomePage } />
-    <Route path={ paths.login } component={ Login } />
-    <Route path={ paths.register } component={ Register } />
-    <Route path={ paths.customer.products } component={ Products } />
-    <Route exact path={ paths.customer.checkout } component={ Checkout } />
-    <Route exact path={ paths.customer.orders } component={ Orders } />
-    <Route path={ paths.customer.orderDetails } component={ OrderDetails } />
-    <Route component={ NotFound } />
+    <Route exact path={ paths.home } component={ common.Home } />
+    <Route path={ paths.login } component={ common.Login } />
+    <Route path={ paths.register } component={ common.Register } />
+    <Route path={ paths.customer.products } component={ costumer.Products } />
+    <Route exact path={ paths.customer.checkout } component={ costumer.Checkout } />
+    <Route exact path={ paths.customer.orders } component={ costumer.Orders } />
+    <Route path={ paths.customer.orderDetails } component={ costumer.OrderDetails } />
+    <Route exact path={ paths.seller.orders } component={ seller.Orders } />
+    <Route path={ paths.seller.orderDetails } component={ seller.OrderDetails } />
+    <Route component={ common.NotFound } />
   </Switch>
 );
 

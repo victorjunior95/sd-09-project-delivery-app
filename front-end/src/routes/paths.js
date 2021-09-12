@@ -12,7 +12,7 @@ const paths = {
   seller: {
     root: '/seller',
     get orders() { return `${this.root}/orders`; },
-    get orderDetails() { return `${this.orders}/<id>`; },
+    get orderDetails() { return `${this.orders}/:id`; },
   },
   admin: {
     root: '/admin',

@@ -50,6 +50,7 @@ const testIds = {
   id50: (id) => `seller_orders__element-order-date-${id}`,
   id51: (id) => `seller_orders__element-card-price-${id}`,
   id52: (id) => `seller_orders__element-card-address-${id}`,
+  id54: 'seller_order_details__element-order-details-label-order-id',
   id55: 'seller_order_details__element-order-details-label-delivery-status',
   id56: 'seller_order_details__element-order-details-label-order-date',
   id57: 'seller_order_details__button-preparing-check',
