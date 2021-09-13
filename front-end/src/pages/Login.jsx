@@ -60,6 +60,7 @@ function Login() {
     if (result.error) {
       setErrorMessage(result.error.message);
     } else {
+      setErrorMessage('');
       localStorage.setItem('user', JSON.stringify(result));
       history.push(userRedirect[result.role]);
       // switch (result.role) {
@@ -77,13 +78,14 @@ function Login() {
   };
 
   const errorDivMessage = (
-    <div>
+    <div className="message-error">
       <p data-testid={ dataTestIds[5] }>{ errorMessage }</p>
       <button
+        className="ml-2 font-bold"
         type="button"
         onClick={ () => setErrorMessage() }
       >
-        Tentar novamente
+        X
       </button>
     </div>
   );
@@ -112,6 +114,7 @@ function Login() {
           placeholderText="************"
           dataTestId={ dataTestIds[2] }
         />
+        {errorMessage && errorDivMessage}
         <LargeButton
           buttonText="LOGIN"
           isDisabled={ disableButton }
@@ -128,7 +131,6 @@ function Login() {
           />
         </Link>
       </section>
-      {errorMessage && errorDivMessage}
     </main>
   );
 }
