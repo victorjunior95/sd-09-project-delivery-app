@@ -4,7 +4,7 @@ import moment from 'moment';
 import NavBar from '../components/NavBar';
 import { getOrderById } from '../services/api';
 
-const CustomerDetails = () => {
+const SellerDetails = () => {
   const [order, setOrder] = useState([]);
   const [error, setError] = useState(false);
   const [disabled, setDisable] = useState(false);
@@ -119,4 +119,4 @@ const CustomerDetails = () => {
   );
 };
 
-export default CustomerDetails;
+export default SellerDetails;
