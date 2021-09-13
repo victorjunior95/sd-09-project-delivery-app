@@ -31,6 +31,7 @@ const DetailsCard = () => {
     setlastOrders(theResponse.products);
     setAlllastOrders(theResponse);
   };
+
   const submitOrderChangeStatus = async () => {
     const orderBody = {
       method: 'PUT',
@@ -59,8 +60,10 @@ const DetailsCard = () => {
   useEffect(() => {
     submitOrder();
   }, []);
+
   const TESTID38 = 'customer_order_details__element-order-details-label-seller-name';
   const TESTID40 = 'customer_order_details__element-order-details-label-delivery-status';
+
   return (
     <div className="CheckoutCard-wrapper-table">
       <table className="CheckoutCard-table">
