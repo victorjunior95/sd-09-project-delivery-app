@@ -39,6 +39,7 @@ const findOrderById = async (id) => {
     },
   } });
   return findIdOrder;
+  // mergeado
 };
 
 module.exports = { newOrder, populateSaleProd, findOrderById };
