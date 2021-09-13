@@ -1,6 +1,4 @@
-const { product } = require('../../database/models');
-const { sale } = require('../../database/models');
-const { salesProduct } = require('../../database/models');
+const { sale, salesProduct, product, user } = require('../../database/models');
 
 const newOrder = async ({
   userId,
@@ -35,11 +33,28 @@ const findOrderById = async (id) => {
       model: product,
       as: 'products',
       through: {
-        attributes: ['quantity'],
+        attributes: { include: ['quantity'] },
       },
     },
   });
   return findIdOrder;
 };
 
-module.exports = { newOrder, populateSaleProd, findOrderById };
+const findSellerById = async (id) => {
+  const seller = await user.findOne({ where: { id } });
+  return seller;
+};
+const changeStatusDelivery = async (id) => {
+  const status = 'Entregue';
+  await sale.update({ status }, { where: { id } });
+  const order = await sale.findOne({ where: { id } });
+  return order;
+};
+
+module.exports = {
+  newOrder,
+  populateSaleProd,
+  findOrderById,
+  findSellerById,
+  changeStatusDelivery
+};

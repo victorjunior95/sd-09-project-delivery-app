@@ -178,7 +178,7 @@ export const getUsersRole = async (token, role, setAllSellers) => {
       },
     }).then((res) => res.json())
     .then((jsoned) => {
-      console.log(jsoned);
+      // console.log(jsoned);
       setAllSellers(jsoned);
     });
 };

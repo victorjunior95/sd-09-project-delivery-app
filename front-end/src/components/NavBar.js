@@ -6,6 +6,8 @@ import './NavBar.css';
 function NavBar(props) {
   const { userType, userName } = props;
   let prefix = '';
+  // console.log(userType, userName);
+  // console.log(prefix);
 
   if (userType === 'customer') {
     prefix = 'customer_products__';
@@ -75,7 +77,7 @@ function NavBar(props) {
               className="logout"
               id="logout"
               href="/login"
-              data-testid="customer_products__element-navbar-link-logout" // algo errado aqui, novo coment só pra dar novo push
+              data-testid="customer_products__element-navbar-link-logout"
               onClick={ () => localStorage.clear() }
             >
               Sair
