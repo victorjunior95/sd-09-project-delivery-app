@@ -6,8 +6,6 @@ import './NavBar.css';
 function NavBar(props) {
   const { userType, userName } = props;
   let prefix = '';
-  console.log(userType, userName);
-  console.log(prefix);
 
   if (userType === 'customer') {
     prefix = 'customer_products__';
