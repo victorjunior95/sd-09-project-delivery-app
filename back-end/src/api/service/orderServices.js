@@ -35,7 +35,7 @@ const findOrderById = async (id) => {
     model: product,
     as: 'products',
     through: {
-      attributes: { include: ['quantity'] },
+      attributes: ['quantity'],
     },
   } });
   return findIdOrder;

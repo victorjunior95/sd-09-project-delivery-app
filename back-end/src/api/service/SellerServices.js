@@ -23,7 +23,7 @@ const getAll = async (email) => {
       model: product,
       as: 'products',
       through: {
-        attributes: { include: ['quantity'] },
+        attributes: ['quantity'],
       },
     },
   });

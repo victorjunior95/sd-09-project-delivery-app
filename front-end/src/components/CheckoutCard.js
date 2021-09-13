@@ -46,7 +46,8 @@ const CheckoutCard = ({ cart, setCart }) => {
     };
     const theSale = await fetch('http://localhost:3001/customer/orders', orderBody);
     const theResponse = await theSale.json();
-    console.log('orderBody', orderBody);
+    // console.log('orderBody', orderBody);
+    console.log(theResponse);
     console.log('----------------------------------------------------------');
     console.log('response ID =>', theResponse.id, theResponse);
     setCart([]);
