@@ -19,7 +19,6 @@ const Cart = () => {
 
   return (
     <button
-      style={ {} }
       className="cart-button"
       type="button"
       onClick={ () => history.push('/customer/checkout') }

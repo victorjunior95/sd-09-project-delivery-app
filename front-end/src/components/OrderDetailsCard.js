@@ -25,8 +25,8 @@ const DetailsCard = () => {
     const theResponse = await theSale.json();
     const theSeller = await fetch(`http://localhost:3001/customer/orders/seller/${theResponse.sellerId}`, orderBody);
     const theResponseSeller = await theSeller.json();
-    console.log('Aqui', theResponseSeller);
-    // console.log('Aqui', theResponse);
+    // console.log('Aqui', theResponseSeller);
+    console.log('theResponse', theResponse);
     setiInfoSeller(theResponseSeller);
     setlastOrders(theResponse.products);
     setAlllastOrders(theResponse);

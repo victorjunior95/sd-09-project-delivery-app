@@ -1,6 +1,10 @@
 .wrapper-card-product {
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px 200px 200px;
-  gap: 10px;
-  /* width: 100%; */
+  /* display: grid;
+  grid-template-columns: repeat(6, 15%); */
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: row wrap;
+  /* gap: 1vw; */
+  width: 100%;
 }

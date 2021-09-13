@@ -39,7 +39,7 @@ const Products = () => {
           <ProductsCard key={ product.id } product={ product } />
         )) }
       </div>
-      <div style={ { marginTop: '100px' } }>
+      <div style={ { textAlign: 'center' } }>
         <Cart />
       </div>
     </div>
