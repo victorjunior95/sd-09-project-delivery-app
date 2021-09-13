@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import TextInput from '../components/TextInput';
 import LargeButton from '../components/LargeButton';
-import logoDelivery from '../images/logo-delivery.png';
+import logoDelivery from '../images/DeliveryFast.png';
 import api from '../services/api';
 import dataTestIds from '../utils/dataTestIds';
 
@@ -91,14 +91,11 @@ function Login() {
   return (
     <main className="flex flex-col md:flex-row items-center">
       <section className="flex flex-col justify-center text-center">
-        <img
-          style={ { height: '200px', width: '200px' } }
-          src={ logoDelivery }
-          alt="app logo"
-        />
-        <h1>Delivery</h1>
+        {/* <h1>Fast Delivery</h1> */}
+        <img className="w-3/5" src={ logoDelivery } alt="app logo" />
       </section>
       <section className="flex flex-col justify-center fundo-login">
+        <h1 className="font-black text-5xl mb-10">Bem vindo(a)!</h1>
         <TextInput
           type="text"
           name="email"
@@ -127,7 +124,7 @@ function Login() {
             buttonText="Ainda não tenho conta"
             onClick={ () => {} }
             dataTestId={ dataTestIds[4] }
-            classStyle="text-gray-600 text-xs w-2/3"
+            classStyle="btn-border-green"
           />
         </Link>
       </section>
