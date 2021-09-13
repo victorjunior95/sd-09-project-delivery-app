@@ -91,12 +91,12 @@ function Login() {
   );
 
   return (
-    <main className="flex flex-col md:flex-row items-center">
-      <section className="flex flex-col justify-center text-center">
+    <main className="content-login">
+      <section className="content-login">
         {/* <h1>Fast Delivery</h1> */}
         <img className="w-3/5" src={ logoDelivery } alt="app logo" />
       </section>
-      <section className="flex flex-col justify-center fundo-login">
+      <section className="fundo-login">
         <h1 className="font-black text-5xl mb-10">Bem vindo(a)!</h1>
         <TextInput
           type="text"

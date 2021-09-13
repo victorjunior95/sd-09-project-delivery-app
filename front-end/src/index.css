@@ -23,7 +23,8 @@ code {
     hover:bg-green-600 focus:outline-none 
     focus:ring-2 focus:ring-green-400 
     focus:ring-opacity-75 mt-3 cursor-pointer
-    disabled:cursor-not-allowed disabled:opacity-20;
+    disabled:cursor-not-allowed disabled:bg-green-700 disabled:opacity-20;
+
 }
 
 .btn-generico {
@@ -51,8 +52,9 @@ input, select {
 }
 
 .fundo-login {
-  @apply w-2/5 rounded shadow-lg bg-white
-   my-10 p-12 pb-10 fixed right-24;
+  @apply md:w-2/5 rounded md:shadow-lg bg-white
+   my-10 md:p-12 pb-10 md:fixed md:right-24
+   flex flex-col justify-center;
 }
 
 .message-error {
@@ -78,4 +80,8 @@ input, select {
   focus:outline-none
   focus:ring-2 focus:ring-green-400 
   focus:ring-opacity-75 w-full
+}
+
+.content-login {
+  @apply flex flex-col items-center md:items-start md:justify-center
 }
