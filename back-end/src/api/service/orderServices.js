@@ -56,5 +56,5 @@ module.exports = {
   populateSaleProd,
   findOrderById,
   findSellerById,
-  changeStatusDelivery
+  changeStatusDelivery,
 };
