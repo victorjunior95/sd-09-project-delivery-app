@@ -9,7 +9,9 @@ import Register from './pages/Register';
 import SellerOrders from './pages/SellerOrders';
 import OrderDetails from './pages/OrderDetails';
 import SellerDetails from './pages/SellerDetails';
-import CustomerDetails from './pages/CustomerDetails';
+import AllOrders from './pages/AllOrders';
+// import OrderDetailsCard from './components/OrderDetailsCard';
+// import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
   return (
@@ -18,11 +20,12 @@ function App() {
         <Switch>
           <Route path="/admin/manage" component={ Admin } />
           <Route path="/customer/products" component={ Products } />
-          <Route path="/customer/orders/:id" component={ CustomerDetails } />
+          {/* <Route path="/customer/orders/:id" component={ CustomerDetails } /> */}
           <Route path="/seller/orders/:id" component={ SellerDetails } />
           <Route path="/seller/orders" component={ SellerOrders } />
           <Route path="/customer/checkout" component={ Checkout } />
           <Route path="/customer/orders/:id" component={ OrderDetails } />
+          <Route path="/customer/orders" component={ AllOrders } />
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
           <Route

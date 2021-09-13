@@ -46,9 +46,9 @@ const CheckoutCard = ({ cart, setCart }) => {
     };
     const theSale = await fetch('http://localhost:3001/customer/orders', orderBody);
     const theResponse = await theSale.json();
-    console.log('orderBody', orderBody);
-    console.log('----------------------------------------------------------');
-    console.log('response ID =>', theResponse.id, theResponse);
+    // console.log('orderBody', orderBody);
+    // console.log('----------------------------------------------------------');
+    // console.log('response ID =>', theResponse.id, theResponse);
     setCart([]);
     history.push(`orders/${theResponse.id}`);
   };
@@ -76,31 +76,35 @@ const CheckoutCard = ({ cart, setCart }) => {
             <tr key={ index }>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${index}`
+                  `customer_order_details__element-order-table-item-number-${index}`
                 }
               >
                 { index + 1 }
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                data-testid={
+                  `customer_order_details__element-order-table-name-${index}`
+                }
               >
                 { element.name }
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+                data-testid={
+                  `customer_order_details__element-order-table-quantity-${index}`
+                }
               >
                 { element.quantity }
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-unit-price-${index}`
+                  `customer_order_details__element-order-table-sub-total-${index}`
                 }
               >
                 { String(element.price.toFixed(2)).replace('.', ',') }
               </td>
               <td
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-${index}`
+                  `customer_order_details__element-order-total-price-${index}`
                 }
               >
                 { String((Number(element.price) * Number(element.quantity)).toFixed(2))
