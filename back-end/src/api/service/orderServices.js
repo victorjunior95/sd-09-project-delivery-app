@@ -37,7 +37,7 @@ const findOrderById = async (id) => {
       through: {
         attributes: ['quantity'],
       },
-    }
+    },
   });
   return findIdOrder;
 };
