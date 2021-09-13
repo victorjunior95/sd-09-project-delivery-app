@@ -32,14 +32,14 @@ const findOrderById = async (id) => {
   const findIdOrder = await sale.findOne({
     where: { id },
     include: {
-    model: product,
-    as: 'products',
-    through: {
-      attributes: ['quantity'],
-    },
-  } });
+      model: product,
+      as: 'products',
+      through: {
+        attributes: ['quantity'],
+      },
+    }
+  });
   return findIdOrder;
-  // mergeado
 };
 
 module.exports = { newOrder, populateSaleProd, findOrderById };

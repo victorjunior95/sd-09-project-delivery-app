@@ -44,7 +44,7 @@ const CheckoutCard = ({ cart, setCart }) => {
         products: cart.map(({ id, quantity }) => ({ id, quantity })),
       }),
     };
-    const theSale = await fetch('http://localhost:3001/customer/orders', orderBody);
+    const theSale = await fetch('http://localhost:3001/customer/order', orderBody);
     const theResponse = await theSale.json();
     // console.log('orderBody', orderBody);
     console.log(theResponse);
