@@ -76,35 +76,35 @@ const CheckoutCard = ({ cart, setCart }) => {
             <tr key={ index }>
               <td
                 data-testid={
-                  `customer_order_details__element-order-table-item-number-${index}`
+                  `customer_checkout__element-order-table-item-number-${index}`
                 }
               >
                 { index + 1 }
               </td>
               <td
                 data-testid={
-                  `customer_order_details__element-order-table-name-${index}`
+                  `customer_checkout__element-order-table-name-${index}`
                 }
               >
                 { element.name }
               </td>
               <td
                 data-testid={
-                  `customer_order_details__element-order-table-quantity-${index}`
+                  `customer_checkout__element-order-table-quantity-${index}`
                 }
               >
                 { element.quantity }
               </td>
               <td
                 data-testid={
-                  `customer_order_details__element-order-table-sub-total-${index}`
+                  `customer_checkout__element-order-table-unit-price-${index}`
                 }
               >
                 { String(element.price.toFixed(2)).replace('.', ',') }
               </td>
               <td
                 data-testid={
-                  `customer_order_details__element-order-total-price-${index}`
+                  `customer_checkout__element-order-table-sub-total-${index}`
                 }
               >
                 { String((Number(element.price) * Number(element.quantity)).toFixed(2))
@@ -125,7 +125,6 @@ const CheckoutCard = ({ cart, setCart }) => {
       <h4>
         Total a pagar:
         <span
-          style={ {} }
           ref={ useRef() }
           data-testid="customer_checkout__element-order-total-price"
         >
