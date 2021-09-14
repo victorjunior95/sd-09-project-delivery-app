@@ -10,6 +10,7 @@ import transformDate from '../utils/transformDate';
 import CardTotal from '../components/CardTotal';
 import transformOrderNumber from '../utils/transformOrderNumber';
 import { getColorStatus } from '../utils/colorsStatus';
+import LabelText from '../components/LabelText';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -73,30 +74,33 @@ function CustomerOrderDetails() {
       <div className="container-box">
         <p className="mt-10 title-box">Detalhe do Pedido</p>
         <div className="box-border-90 flex-col">
-          <div className="flex w-full bg-gray-100">
+          <div className="flex w-full bg-gray-100 flex-wrap">
+            <LabelText
+              classStyle="ml-2 mr-4 mt-1 font-bold text-base"
+              textLabel="PEDIDO "
+              dataTestId={ dataTestIds[37] }
+              textSpan={ transformOrderNumber(myOrder.id) }
+            />
+
+            <LabelText
+              classStyle="mr-4 mt-1 font-bold text-base"
+              textLabel="P.Vend: "
+              dataTestId={ dataTestIds[38] }
+              textSpan={ myOrder['seller.name'] }
+            />
             <p
-              className="ml-2 mr-4 mt-1 font-bold text-base"
-              data-testid={ dataTestIds[37] }
-            >
-              { transformOrderNumber(myOrder.id) }
-            </p>
-            <p
-              className="mr-4 mt-1 font-bold text-base"
-              data-testid={ dataTestIds[38] }
-            >
-              { myOrder['seller.name'] }
-            </p>
-            <p
-              className="mr-4 mt-1 font-bold text-base"
+              className="data-label"
               data-testid={ dataTestIds[39] }
             >
-              { myOrder.saleDate }
+              {myOrder.saleDate}
             </p>
             <p
-              className={ `mt-2 btn-generico ${getColorStatus(myOrder.status)}` }
+              className={ `mt-2 status-generico ${getColorStatus(
+                myOrder.status,
+              )}` }
               data-testid={ dataTestIds[40] }
             >
-              { myOrder.status }
+              {myOrder.status}
             </p>
             {/* Esse botão vai ter que ser utilizado na hora de fazer o socket */}
             <button
@@ -105,7 +109,7 @@ function CustomerOrderDetails() {
               disabled={ myOrder.status !== 'Em Trânsito' }
               value="Entregue"
               onClick={ clickChangeSaleStatus }
-              className="btn-generico ml-auto mr-2 mt-2 mb-2"
+              className="btn-generico btn-green-dark ml-auto"
             >
               MARCAR COMO ENTREGUE
             </button>

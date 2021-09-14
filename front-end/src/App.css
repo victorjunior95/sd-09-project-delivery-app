@@ -280,7 +280,7 @@
 .total-value-p {
   background: rgba(3, 107, 82, 1);
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px 25px;
 }
 
 /* .head-pedido {
@@ -292,6 +292,8 @@
 .content-card-pedidos {
   display: flex;
   margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .content-card-pedido-item {
@@ -299,7 +301,7 @@
   border: 1px solid #B1C2BE;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 40%;
+  flex-basis: 30%;
   margin-left: 20px;
   margin-bottom: 25px;
 }
@@ -316,30 +318,34 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  height: 100px;
   font-weight: 600;
 }
 
 .pedido-item-data-value {
   flex-basis: 30%;
+  font-weight: 700;
 
 }
 
 .pedido-data-value-item {
-  background-color: white;
+  background-color: rgba(242, 255, 252, 0.75);
+
   margin: 5px;
   padding: 10px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  border-radius: 10px;
 }
 
 .pedido-data-value-status {
-  flex-basis: 50%;
+  flex-basis: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 5px;
   border-radius: 5px;
+  font-weight: 800;
+  font-size: 1.2em;
 }
 
 .bg-yellow {
@@ -369,5 +375,9 @@
 @media (max-width: 600px) {
   .card-product {
     flex-basis: 80%;
+  }
+
+  .box-border-90 {
+    flex-direction: column;
   }
 }

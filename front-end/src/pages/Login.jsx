@@ -85,19 +85,22 @@ function Login() {
         type="button"
         onClick={ () => setErrorMessage() }
       >
-        X
+        Sair
       </button>
     </div>
   );
 
   return (
-    <main className="content-login">
-      <section className="content-login">
-        {/* <h1>Fast Delivery</h1> */}
-        <img className="w-3/5" src={ logoDelivery } alt="app logo" />
-      </section>
-      <section className="fundo-login">
-        <h1 className="font-black text-5xl mb-10">Bem vindo(a)!</h1>
+    <main className="content-login-register">
+      {/* <h1>Fast Delivery</h1> */}
+      <img
+        className="w-3/5"
+        src={ logoDelivery }
+        alt="Um homem de mascara andando de moto, levando bebidas"
+      />
+
+      <section className="fundo-login-register">
+        <h1 className="title-login-register">Bem vindo(a)!</h1>
         <TextInput
           type="text"
           name="email"

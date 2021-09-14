@@ -32,9 +32,35 @@ function OrderCard({ sale }) {
   );
 
   const addressDiv = () => (
-    <div>
-      <p data-testid={ `${dataTestIds[52]}${id}` }>
-        { `${adress}, ${addressNumber}` }
+    <p
+      data-testid={ `${dataTestIds[52]}${id}` }
+      className="flex justify-end text-sm mr-1.5"
+    >
+      {`${adress}, ${addressNumber}`}
+    </p>
+  );
+
+  const dataValueDiv = () => (
+    <div className="pedido-item-data-value">
+      <p
+        data-testid={
+          role === 'seller'
+            ? `${dataTestIds[50]}${id}`
+            : `${dataTestIds[35]}${id}`
+        }
+        className="pedido-data-value-item"
+      >
+        { transformDate(date) }
+      </p>
+      <p
+        data-testid={
+          role === 'seller'
+            ? `${dataTestIds[51]}${id}`
+            : `${dataTestIds[36]}${id}`
+        }
+        className="pedido-data-value-item"
+      >
+        { price.replace('.', ',') }
       </p>
     </div>
   );
@@ -43,7 +69,7 @@ function OrderCard({ sale }) {
     <Link to={ `/${role}/orders/${id}` } className="content-card-pedido-item">
       <div>
         <div className="pedido-item-data">
-          <div className="pedido-item-data-num">
+          <div className="pedido-item-data-num text-sm text-center">
             <p
               data-testid={
                 role === 'seller'
@@ -54,31 +80,15 @@ function OrderCard({ sale }) {
               { `Pedido: ${transformOrderNumber(id)}` }
             </p>
           </div>
-          { statusDiv(role) }
-          <div className="pedido-item-data-value">
-            <p
-              data-testid={
-                role === 'seller'
-                  ? `${dataTestIds[50]}${id}`
-                  : `${dataTestIds[35]}${id}`
-              }
-              className="pedido-data-value-item"
-            >
-              { transformDate(date) }
-            </p>
-            <p
-              data-testid={
-                role === 'seller'
-                  ? `${dataTestIds[51]}${id}`
-                  : `${dataTestIds[36]}${id}`
-              }
-              className="pedido-data-value-item"
-            >
-              { price.replace('.', ',') }
-            </p>
+          <div className="flex flex-col w-4/5">
+            <div className="flex w-full">
+              { statusDiv(role) }
+              { dataValueDiv() }
+            </div>
+            { role === 'seller' && addressDiv() }
           </div>
         </div>
-        { role === 'seller' && addressDiv() }
+
       </div>
     </Link>
   );

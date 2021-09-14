@@ -28,11 +28,35 @@ code {
 }
 
 .btn-generico {
-  @apply py-1 px-2 border-green-700 text-white
-    rounded-lg shadow-md text-sm hover:bg-green-600
+  @apply py-1 px-2 text-white
+    rounded-lg shadow-md text-sm 
     focus:outline-none focus:ring-2 focus:ring-green-400 
-    focus:ring-opacity-75 h-5 flex items-center cursor-pointer
-    disabled:opacity-20 disabled:cursor-not-allowed;
+    focus:ring-opacity-75 h-7 flex items-center cursor-pointer
+    disabled:opacity-20 disabled:cursor-not-allowed
+    mr-2 mt-2 mb-2;
+}
+
+.btn-green-dark {
+  @apply disabled:bg-green-700 hover:bg-green-600
+  bg-green-700
+}
+.btn-green-ligth {
+  @apply disabled:bg-green-500 hover:bg-green-400
+  bg-green-500
+}
+
+.status-generico {
+  @apply py-1 px-14 px-1 font-bold
+    rounded-lg text-sm bg-blue-50
+    h-7 flex items-center text-center
+    mr-2 mt-2 mb-2;
+}
+
+.data-label {
+  @apply py-1 px-5 px-1 font-bold
+    rounded-lg text-sm bg-blue-50
+    h-7 flex items-center text-center
+    mr-2 mt-2 mb-2 mr-4 mt-1 font-bold text-base;
 }
 
 .btn-entregue {
@@ -51,9 +75,9 @@ input, select {
   placeholder-opacity-40 text-gray-600 mb-3;
 }
 
-.fundo-login {
+.fundo-login-register {
   @apply md:w-2/5 rounded md:shadow-lg bg-white
-   my-10 md:p-12 pb-10 md:fixed md:right-24
+   my-10 w-10/12 md:p-12 pb-10 md:fixed md:right-24
    flex flex-col justify-center;
 }
 
@@ -82,6 +106,14 @@ input, select {
   focus:ring-opacity-75 w-full
 }
 
-.content-login {
+.content-login-register {
   @apply flex flex-col items-center md:items-start md:justify-center
+}
+
+.title-login-register {
+  @apply font-black text-5xl mb-10
+}
+
+.title-checkbox {
+  @apply md:w-1/5 md:mt-2 text-xs w-11/12 mt-3 md:ml-3
 }

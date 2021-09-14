@@ -88,9 +88,10 @@ function Admin() {
   };
 
   const errorDivMessage = (
-    <div>
+    <div className="message-error mb-3 m-2 md: w-full w-11/12">
       <p data-testid={ dataTestIds[75] }>{ errorMessage }</p>
       <button
+        className="ml-2 font-bold"
         type="button"
         onClick={ () => setErrorMessage() }
       >
@@ -105,7 +106,7 @@ function Admin() {
       <Navbar role={ adminData.role } />
       <div className="container-box">
         <p className="mt-10 title-box">Cadastrar novo usuário</p>
-        <section className="box-border-90 justify-between">
+        <section className="box-border-90 md:justify-around flex-wrap">
           <TextInput
             type="text"
             name="nome"
@@ -113,7 +114,7 @@ function Admin() {
             labelText="Nome"
             placeholderText="Nome completo"
             dataTestId={ dataTestIds[65] }
-            classStyle="ml-2 mt-2 w-1/5 text-xs"
+            classStyle="mt-2 ml-2 md:w-1/5 w-11/12 text-xs"
           />
           <TextInput
             type="text"
@@ -122,7 +123,7 @@ function Admin() {
             labelText="Email"
             placeholderText="email@email.com"
             dataTestId={ dataTestIds[66] }
-            classStyle="ml-2 mt-2 w-1/5 text-xs"
+            classStyle="mt-2 md:w-1/5 text-xs w-11/12"
           />
           <TextInput
             type="password"
@@ -131,14 +132,14 @@ function Admin() {
             labelText="Senha"
             placeholderText="senha"
             dataTestId={ dataTestIds[78] }
-            classStyle="ml-2 w-1/5 mt-2 text-xs"
+            classStyle="md:w-1/5 mt-2 text-xs w-11/12"
           />
           <DropDownList
             options={ options }
             name="role"
             dataTestId={ dataTestIds[68] }
             onChange={ handleChange }
-            classStyle="ml-2 w-1/5 mt-2 text-xs"
+            classStyle="md:w-1/5 mt-2 text-xs w-11/12"
             labelText="Tipo"
           />
           <LargeButton
@@ -146,12 +147,12 @@ function Admin() {
             onClick={ handleClick }
             isDisabled={ disableButton }
             dataTestId={ dataTestIds[69] }
-            classStyle="ml-2 mr-2 w-1/5 mt-2 btn-green"
+            classStyle="mr-2 md:w-1/6 btn-green w-11/12 md:mb-1 mb-3"
           />
           { errorMessage && errorDivMessage }
         </section>
-        <h2 className="mt-10 title-box">Lista de Usuários</h2>
-        <div className="box-border-90">
+        <h2 className="mt-5 title-box">Lista de Usuários</h2>
+        <div className="box-border-90 mb-10">
           <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
         </div>
       </div>

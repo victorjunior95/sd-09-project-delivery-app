@@ -72,9 +72,9 @@ function Checkout() {
           <CheckoutTable cartData={ cartData } />
           <CardTotal dataTestId={ testIds[28] } totalCart={ totalCart } />
         </div>
-        <p className="mt-10 title-box">Detalhes e Endereço para Entrega</p>
+        <p className="mt-5 title-box">Detalhes e Endereço para Entrega</p>
         <section className="box-border-90 flex-wrap justify-around">
-          <p className="table-detalhe-title w-1/5 text-xs">
+          <p className="table-detalhe-title title-checkbox">
             {' '}
             P.Vendedora Responsável:
             <DropDownList
@@ -91,7 +91,7 @@ function Checkout() {
             labelText="Endereço"
             placeholderText="Travessa Terceira da Castanheira, Bairro Muruci"
             dataTestId={ testIds[30] }
-            classStyle="w-2/4 m-5 text-xs"
+            classStyle="md:w-2/4 w-11/12 md:m-5 text-xs mt-2"
           />
           <TextInput
             type="input"
@@ -100,14 +100,14 @@ function Checkout() {
             labelText="Número"
             placeholderText="1234"
             dataTestId={ testIds[31] }
-            classStyle="w-1/5 text-xs"
+            classStyle="md:w-1/5 text-xs md:m-5 mt-2 w-11/12"
           />
           <LargeButton
             buttonText="FINALIZAR PEDIDO"
             isDisabled={ disableButton }
             onClick={ handleSubmit }
             dataTestId={ testIds[32] }
-            classStyle="btn-green w-1/3 m-5"
+            classStyle="btn-green md:w-1/3 md:m-5 w-11/12 mt-2 mb-3"
           />
         </section>
       </div>

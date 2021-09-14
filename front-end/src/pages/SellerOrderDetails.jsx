@@ -10,6 +10,7 @@ import transformDate from '../utils/transformDate';
 import CardTotal from '../components/CardTotal';
 import transformOrderNumber from '../utils/transformOrderNumber';
 import { getColorStatus } from '../utils/colorsStatus';
+import LabelText from '../components/LabelText';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -73,21 +74,22 @@ function SellerOrderDetails() {
       <div className="container-box">
         <p className="mt-10 title-box"> Detalhe do Pedido</p>
         <div className="box-border-90 flex-col">
-          <div className="flex w-full bg-gray-100">
+          <div className="flex w-full bg-gray-100 flex-wrap">
+            <LabelText
+              classStyle="ml-2 mr-4 mt-2 font-bold text-base"
+              textLabel="PEDIDO "
+              dataTestId={ dataTestIds[54] }
+              textSpan={ transformOrderNumber(myOrder.id) }
+            />
+
             <p
-              className="ml-2 mr-4 mt-1 font-bold text-base"
-              data-testid={ dataTestIds[54] }
-            >
-              {transformOrderNumber(myOrder.id)}
-            </p>
-            <p
-              className="mr-4 mt-1 font-bold text-base"
+              className="data-label"
               data-testid={ dataTestIds[56] }
             >
               {myOrder.saleDate}
             </p>
             <p
-              className={ `mt-2 btn-generico ${getColorStatus(myOrder.status)}` }
+              className={ `mt-2 status-generico ${getColorStatus(myOrder.status)}` }
               data-testid={ dataTestIds[55] }
             >
               {myOrder.status}
@@ -97,7 +99,7 @@ function SellerOrderDetails() {
               data-testid={ dataTestIds[57] }
               value="Preparando"
               disabled={ myOrder.status !== 'Pendente' }
-              className="btn-generico ml-auto mr-2 mt-2 mb-2"
+              className="btn-generico ml-auto btn-green-ligth  mb-2"
               onClick={ clickChangeSaleStatus }
             >
               PREPARAR PEDIDO
@@ -107,7 +109,7 @@ function SellerOrderDetails() {
               data-testid={ dataTestIds[58] }
               value="Em Trânsito"
               disabled={ myOrder.status !== 'Preparando' }
-              className="btn-generico mt-2 mr-2"
+              className="btn-generico btn-green-dark ml-auto"
               onClick={ clickChangeSaleStatus }
             >
               SAIU PARA ENTREGA

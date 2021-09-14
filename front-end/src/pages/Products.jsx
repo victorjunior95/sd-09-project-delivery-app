@@ -10,7 +10,7 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <div className="mb-10">
       <Navbar role={ userData.role } />
       <CardList />
     </div>
