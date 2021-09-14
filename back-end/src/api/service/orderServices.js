@@ -55,11 +55,9 @@ const changeStatusDelivery = async (id, status) => {
 };
 
 const getAllOrders = async (userId) => {
-
   const result = await sale.findAll({
     where: { userId },
   });
-
   return result;
 };
 

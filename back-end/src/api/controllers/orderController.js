@@ -52,4 +52,10 @@ const getAllTheOrders = rescue(async (req, res) => {
   res.status(200).json(allOrders);
 });
 
-module.exports = { insertOrderInSale, getOrderDetails, getSellerById, changeStatus, getAllTheOrders };
+module.exports = {
+  insertOrderInSale,
+  getOrderDetails,
+  getSellerById,
+  changeStatus,
+  getAllTheOrders,
+};
