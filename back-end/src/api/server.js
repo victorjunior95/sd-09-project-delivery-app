@@ -1,11 +1,10 @@
 require('dotenv').config();
-const express = require('express');
 
 const port = process.env.API_PORT || 3001;
 
 const http = require('http');
 
-const app = express();
+const app = require('./app');
 
 const httpServer = http.createServer(app);
 
@@ -15,7 +14,6 @@ const io = require('socket.io')(httpServer, {
     method: ['GET', 'POST', 'PUT', 'DELETE'],
   },
 });
-
 
 const orderStatus = require('./socket/orderStatusSocket');
 
