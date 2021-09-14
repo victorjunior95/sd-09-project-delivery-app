@@ -1,7 +1,7 @@
 .main-wrapper-AllOrders {
-  text-align: center;
   display: flex;
   flex-flow: column wrap;
+  text-align: center;
 }
 
 .AllOrders-card {
