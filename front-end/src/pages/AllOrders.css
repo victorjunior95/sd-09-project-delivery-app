@@ -1,0 +1,13 @@
+.main-wrapper-AllOrders {
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.AllOrders-card {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 1em;
+}

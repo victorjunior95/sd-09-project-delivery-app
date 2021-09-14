@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import OrderedCard from '../components/OrderedCard';
+import './AllOrders.css';
 
 const AllOrders = () => {
   const { token, id, name, role } = JSON.parse(localStorage.getItem('user'));
@@ -16,9 +17,9 @@ const AllOrders = () => {
         },
       };
       await fetch(`http://localhost:3001/customer/orders/allordersfrom/${id}`, theHeaders)
-        .then((response) => console.log(typeof (id), response, setOrderData));
-      // .then((data) => setOrderData(data.sale))
-      // .catch((err) => console.log(err));
+        .then((response) => response.json())
+        .then((data) => setOrderData(data))
+        .catch((err) => console.log(err));
     }
     fetchOrder();
   }, []);
@@ -29,7 +30,8 @@ const AllOrders = () => {
         userType={ role }
         userName={ name }
       />
-      <div className="AllOrders">
+      <button type="button" onClick={ () => console.log(orderData) }>Click</button>
+      <div className="AllOrders-card">
         { orderData && orderData.map((element, index) => (
           <OrderedCard
             key={ index }
