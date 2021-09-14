@@ -1,8 +1,11 @@
 require('dotenv').config();
+const express = require('express');
 
 const port = process.env.API_PORT || 3001;
 
 const http = require('http');
+
+const app = express();
 
 const httpServer = http.createServer(app);
 
@@ -13,7 +16,6 @@ const io = require('socket.io')(httpServer, {
   },
 });
 
-const app = require('./app');
 
 const orderStatus = require('./socket/orderStatusSocket');
 
