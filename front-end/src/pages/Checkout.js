@@ -5,7 +5,8 @@ import { LoginContext } from '../context/loginContext';
 import './Checkout.css';
 
 const Checkout = () => {
-  const { cart, setCart, name, role } = useContext(LoginContext);
+  const { cart, setCart } = useContext(LoginContext);
+  const { name, role } = JSON.parse(localStorage.getItem('user'));
   return (
     <div className="Checkout-main-wrapper">
       <NavBar

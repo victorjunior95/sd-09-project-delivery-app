@@ -23,7 +23,7 @@ const getAll = async (email) => {
       model: product,
       as: 'products',
       through: {
-        attributes: { include: ['quantity'] },
+        attributes: ['quantity'],
       },
     },
   });
@@ -33,5 +33,5 @@ const getAll = async (email) => {
 };
 
 module.exports = {
-  getAll,  
+  getAll,
 };

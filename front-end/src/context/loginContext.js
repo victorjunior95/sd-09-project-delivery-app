@@ -12,9 +12,8 @@ export const LoginProvider = ({ children }) => {
   const [redirectTo, setRedirectTo] = useState(false);
   const [role, setRole] = useState('');
   const [cart, setCart] = useState([]);
-
   const handleClickLogin = async () => {
-    console.log('to aq');
+    // console.log('to aq');
     await fetchToLogin(email, password, setInvalidUser, setRedirectTo);
   };
 
