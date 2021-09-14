@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './OrderedCard.css';
 
 function OrderedCard({ data, index }) {
   const TEN = 10;
 
   return (
-    <NavLink to={ `/customer/orders/${data.id}` }>
+    <NavLink
+      to={ `/customer/orders/${data.id}` }
+      className="ordered-cards"
+    >
       <div
         key={ index }
-        className="orders-cards"
       >
         <p
           data-testid={ `customer_orders__element-order-id-${data.id}` }
@@ -19,7 +22,7 @@ function OrderedCard({ data, index }) {
         <p
           data-testid={ `customer_orders__element-delivery-status-${data.id}` }
         >
-          status
+          { data.status }
         </p>
         <p
           data-testid={ `customer_orders__element-order-date-${data.id}` }

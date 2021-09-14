@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.AllOrders-card {
+.AllOrders-container {
   border: 1px solid black;
   display: flex;
   flex-flow: row wrap;

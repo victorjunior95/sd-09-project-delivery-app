@@ -31,9 +31,10 @@ const AllOrders = () => {
         userName={ name }
       />
       <button type="button" onClick={ () => console.log(orderData) }>Click</button>
-      <div className="AllOrders-card">
+      <div className="AllOrders-container">
         { orderData && orderData.map((element, index) => (
           <OrderedCard
+            className="AllOrders-card"
             key={ index }
             data={ element }
             index={ index }
