@@ -54,10 +54,20 @@ const changeStatusDelivery = async (id, status) => {
   return order;
 };
 
+const getAllOrders = async (userId) => {
+
+  const result = await sale.findAll({
+    where: { userId },
+  });
+
+  return result;
+};
+
 module.exports = {
   newOrder,
   populateSaleProd,
   findOrderById,
   findSellerById,
   changeStatusDelivery,
+  getAllOrders,
 };
