@@ -59,7 +59,8 @@ const SellerDetails = () => {
           {`Pedido 000${order.id}`}
         </li>
         <li data-testid="seller_order_details__element-order-details-label-order-date">
-          {moment(order.saleDate).format('DD/MM/YY')}
+          {moment(order.saleDate).format('DD/MM/YYYY')}
+          {/* Estava moment(order.saleDate).format('DD/MM/YY')  */}
         </li>
         <li
           ref={ useRef() }
