@@ -34,12 +34,12 @@ const Products = () => {
         userType={ role }
         userName={ name }
       />
-      <div className="wrapper-card-product" style={ { marginBottom: '50px' } }>
+      <div className="wrapper-card-product">
         { products && products.length > 0 && products.map((product) => (
           <ProductsCard key={ product.id } product={ product } />
         )) }
       </div>
-      <div style={ { marginTop: '100px' } }>
+      <div style={ { textAlign: 'center' } }>
         <Cart />
       </div>
     </div>

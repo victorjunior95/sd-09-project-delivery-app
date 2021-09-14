@@ -46,9 +46,9 @@ const CheckoutCard = ({ cart, setCart }) => {
     };
     const theSale = await fetch('http://localhost:3001/customer/orders', orderBody);
     const theResponse = await theSale.json();
-    console.log('orderBody', orderBody);
-    console.log('----------------------------------------------------------');
-    console.log('response ID =>', theResponse.id, theResponse);
+    // console.log('orderBody', orderBody);
+    // console.log('----------------------------------------------------------');
+    // console.log('response ID =>', theResponse.id, theResponse);
     setCart([]);
     history.push(`orders/${theResponse.id}`);
   };
@@ -82,12 +82,16 @@ const CheckoutCard = ({ cart, setCart }) => {
                 { index + 1 }
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                data-testid={
+                  `customer_checkout__element-order-table-name-${index}`
+                }
               >
                 { element.name }
               </td>
               <td
-                data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+                data-testid={
+                  `customer_checkout__element-order-table-quantity-${index}`
+                }
               >
                 { element.quantity }
               </td>

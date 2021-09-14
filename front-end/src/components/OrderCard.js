@@ -13,7 +13,7 @@ const OrderCard = (props) => {
     saleDate,
   } = props;
 
-  const formatDate = moment(saleDate).format('DD/MM/YY');
+  const formatDate = moment(saleDate).format('DD/MM/YYYY');
 
   return (
     <div className="card-container">

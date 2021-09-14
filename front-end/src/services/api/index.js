@@ -33,11 +33,11 @@ export const getOrders = async (payload, setOrders, setError) => {
   const { token, email } = payload;
 
   const Myheaders = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentType,
     Authorization: token,
   };
 
-  await fetch(`http://localhost:3001/seller/orders/${email}`, {
+  await fetch(`${BASE_URL}/seller/orders/${email}`, {
     headers: Myheaders,
     method: 'GET',
   })
@@ -47,6 +47,29 @@ export const getOrders = async (payload, setOrders, setError) => {
         setError(response.message);
       } else {
         setOrders(response);
+      }
+    });
+};
+
+export const getOrderById = async (payload, setOrder, setError, setStatusOrder) => {
+  const { token, id } = payload;
+
+  const Myheaders = {
+    'Content-Type': contentType,
+    Authorization: token,
+  };
+
+  await fetch(`${BASE_URL}/seller/orders/details/${id}`, {
+    headers: Myheaders,
+    method: 'GET',
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        setError(response.message);
+      } else {
+        setOrder(response);
+        setStatusOrder(response.status);
       }
     });
 };
@@ -156,7 +179,7 @@ export const getUsersRole = async (token, role, setAllSellers) => {
       },
     }).then((res) => res.json())
     .then((jsoned) => {
-      console.log(jsoned);
+      // console.log(jsoned);
       setAllSellers(jsoned);
     });
 };
