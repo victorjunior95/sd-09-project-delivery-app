@@ -9,10 +9,10 @@ import api from '../services/api';
 import AppContext from '../context/AppContext';
 import testIds from '../utils/dataTestIds';
 import { getCarrinhoLocalStorage } from '../utils/storage';
+import CardTotal from '../components/CardTotal';
 
 function Checkout() {
   const { totalCart } = useContext(AppContext);
-  // const history = useHistory();
   const [disableButton, setDisableButton] = useState(true);
   const cartData = getCarrinhoLocalStorage();
   const [infoSale, setInfoSalle] = useState({
@@ -28,12 +28,6 @@ function Checkout() {
     const vendors = await api.getAllVendors();
     setVendorList(vendors);
   };
-
-  // const getsSellerFromState = (sellerName) => {
-  //   const myVendor = vendorList.find((vendor) => vendor.name === sellerName);
-  //   // setInfoSalle({ ...infoSale, sellerId: myVendor.id });
-  //   return myVendor.id;
-  // };
 
   const isDisabledButton = () => {
     const { deliveryAddress, sellerName, deliveryNumber } = infoSale;
@@ -55,22 +49,14 @@ function Checkout() {
   };
 
   const handleSubmit = async () => {
-    // const sellerId = getsSellerFromState(infoSale.sellerName);
     const saleData = { ...infoSale,
       userId: user.id,
       totalCart: totalCart.replace(',', '.') };
-    console.log(saleData);
     const result = await api.saveOrder(saleData, cartData, user.token);
     if (result.error) { console.error(`Tratar erro: "${result.error.message}"`); }
-    // history.push(`/customer/orders/${result}`); // conferir esse id
     setIdVenda(result);
     setRedirect(true);
   };
-
-  // const getVendorsNames = () => {
-  //   const result = vendorList.map((vendor) => (vendor.name));
-  //   return result;
-  // };
 
   if (redirect) {
     return (
@@ -80,20 +66,15 @@ function Checkout() {
   return (
     <main>
       <Navbar role={ user.role } />
-      <div className="pedido">
-        <p className="mt-10 title-table-pedidos">Detalhes e Endereço para Entrega</p>
-        <div className="table-pedido">
+      <div className="container-box">
+        <p className="mt-10 title-box">Finalizar Pedido</p>
+        <div className="box-border-90 flex-col">
           <CheckoutTable cartData={ cartData } />
-          <section className="total-value">
-            <p data-testid={ testIds[28] } className="total-value-p">
-              Total: R$
-              { totalCart }
-            </p>
-          </section>
+          <CardTotal dataTestId={ testIds[28] } totalCart={ totalCart } />
         </div>
-        <p className="mt-10 title-table-pedidos">Detalhes e Endereço para Entrega</p>
-        <section className="table-pedido-endereco">
-          <p className="table-detalhe-title w-1/5">
+        <p className="mt-5 title-box">Detalhes e Endereço para Entrega</p>
+        <section className="box-border-90 flex-wrap justify-around">
+          <p className="table-detalhe-title title-checkbox">
             {' '}
             P.Vendedora Responsável:
             <DropDownList
@@ -108,9 +89,9 @@ function Checkout() {
             name="deliveryAddress"
             onChange={ handleChange }
             labelText="Endereço"
-            placeholderText="Seu endereço aqui"
+            placeholderText="Travessa Terceira da Castanheira, Bairro Muruci"
             dataTestId={ testIds[30] }
-            classStyle="w-2/4 m-5"
+            classStyle="md:w-2/4 w-11/12 md:m-5 text-xs mt-2"
           />
           <TextInput
             type="input"
@@ -119,14 +100,14 @@ function Checkout() {
             labelText="Número"
             placeholderText="1234"
             dataTestId={ testIds[31] }
-            classStyle="w-1/5"
+            classStyle="md:w-1/5 text-xs md:m-5 mt-2 w-11/12"
           />
           <LargeButton
             buttonText="FINALIZAR PEDIDO"
             isDisabled={ disableButton }
             onClick={ handleSubmit }
             dataTestId={ testIds[32] }
-            classStyle="btn-green w-1/3 m-5"
+            classStyle="btn-green md:w-1/3 md:m-5 w-11/12 mt-2 mb-3"
           />
         </section>
       </div>

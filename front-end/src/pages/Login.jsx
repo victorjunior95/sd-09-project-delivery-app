@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import TextInput from '../components/TextInput';
 import LargeButton from '../components/LargeButton';
-import logoDelivery from '../images/logo-delivery.png';
+import logoDelivery from '../images/DeliveryFast.png';
 import api from '../services/api';
 import dataTestIds from '../utils/dataTestIds';
 
@@ -60,6 +60,7 @@ function Login() {
     if (result.error) {
       setErrorMessage(result.error.message);
     } else {
+      setErrorMessage('');
       localStorage.setItem('user', JSON.stringify(result));
       history.push(userRedirect[result.role]);
       // switch (result.role) {
@@ -77,28 +78,29 @@ function Login() {
   };
 
   const errorDivMessage = (
-    <div>
+    <div className="message-error">
       <p data-testid={ dataTestIds[5] }>{ errorMessage }</p>
       <button
+        className="ml-2 font-bold"
         type="button"
         onClick={ () => setErrorMessage() }
       >
-        Tentar novamente
+        Sair
       </button>
     </div>
   );
 
   return (
-    <main className="flex flex-col md:flex-row items-center">
-      <section className="flex flex-col justify-center text-center">
-        <img
-          style={ { height: '200px', width: '200px' } }
-          src={ logoDelivery }
-          alt="app logo"
-        />
-        <h1>Delivery</h1>
-      </section>
-      <section className="flex flex-col justify-center fundo-login">
+    <main className="content-login-register">
+      {/* <h1>Fast Delivery</h1> */}
+      <img
+        className="w-3/5"
+        src={ logoDelivery }
+        alt="Um homem de mascara andando de moto, levando bebidas"
+      />
+
+      <section className="fundo-login-register">
+        <h1 className="title-login-register">Bem vindo(a)!</h1>
         <TextInput
           type="text"
           name="email"
@@ -115,6 +117,7 @@ function Login() {
           placeholderText="************"
           dataTestId={ dataTestIds[2] }
         />
+        {errorMessage && errorDivMessage}
         <LargeButton
           buttonText="LOGIN"
           isDisabled={ disableButton }
@@ -127,11 +130,10 @@ function Login() {
             buttonText="Ainda não tenho conta"
             onClick={ () => {} }
             dataTestId={ dataTestIds[4] }
-            classStyle="text-gray-600 text-xs w-2/3"
+            classStyle="btn-border-green"
           />
         </Link>
       </section>
-      {errorMessage && errorDivMessage}
     </main>
   );
 }

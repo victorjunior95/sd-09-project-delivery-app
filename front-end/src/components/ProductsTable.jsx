@@ -20,20 +20,20 @@ function ProductsTable({ listItems, testIds }) {
             <td data-testid={ `${testIds[0]}${index}` } className="t-item">
               {index + 1}
             </td>
-            <td data-testid={ `${testIds[1]}${index}` } className="t-desc">
+            <td data-testid={ `${testIds[1]}${index}` } className="t-desc w-1/2">
               {item.name}
             </td>
-            <td data-testid={ `${testIds[2]}${index}` } className="t-quantity">
+            <td data-testid={ `${testIds[2]}${index}` } className="bg-green-dark w-8">
               {item.salesProducts.quantity}
             </td>
             <td
               data-testid={ `${testIds[3]}${index}` }
-              className="t-price-un"
+              className="bg-purple"
             >
               {`R$${item.price}`}
 
             </td>
-            <td data-testid={ `${testIds[4]}${index}` } className="t-subtotal">
+            <td data-testid={ `${testIds[4]}${index}` } className="bg-blue">
               {`R$${(item.price * item.salesProducts.quantity).toFixed(2)}`}
             </td>
           </tr>

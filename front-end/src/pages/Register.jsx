@@ -4,6 +4,7 @@ import api from '../services/api';
 import TextInput from '../components/TextInput';
 import LargeButton from '../components/LargeButton';
 import dataTestIds from '../utils/dataTestIds';
+import inscricao from '../images/inscricao.png';
 
 function Register() {
   // estados para utilizar na pagina
@@ -37,7 +38,7 @@ function Register() {
 
   useEffect(() => {
     verifyNewUserCredentials();
-  }, [newUserData]);
+  }, [newUserData, verifyNewUserCredentials]);
 
   const handleChange = ({ target: { name, value } }) => {
     setNewUserData({ ...newUserData, [name]: value });
@@ -67,20 +68,26 @@ function Register() {
   };
 
   const errorDivMessage = (
-    <div>
+    <div className="message-error">
       <p data-testid={ dataTestIds[10] }>{ errorMessage }</p>
       <button
+        className="ml-2 font-bold"
         type="button"
         onClick={ cleanFields }
       >
-        Limpar
+        X
       </button>
     </div>
   );
   return (
-    <main>
-      <section>
-        <p>Cadastro</p>
+    <main className="content-login-register">
+      <img
+        className="w-3/5"
+        src={ inscricao }
+        alt="Uma mulher com um rostinho feliz andando de moto, levando bebidas"
+      />
+      <section className="fundo-login-register">
+        <h1 className="title-login-register">Cadastro</h1>
         <TextInput
           type="text"
           name="nome"
@@ -93,7 +100,7 @@ function Register() {
           type="text"
           name="email"
           onChange={ handleChange }
-          labelText="email"
+          labelText="E-mail"
           placeholderText="email desejado"
           dataTestId={ dataTestIds[7] }
         />
@@ -105,16 +112,16 @@ function Register() {
           placeholderText="senha"
           dataTestId={ dataTestIds[8] }
         />
+        {errorMessage && errorDivMessage}
         <LargeButton
           buttonText="CADASTRAR"
           onClick={ handleClick }
           isDisabled={ disableButton }
           dataTestId={ dataTestIds[9] }
+          classStyle="btn-green"
         />
       </section>
-      { errorMessage && errorDivMessage }
     </main>
-
   );
 }
 

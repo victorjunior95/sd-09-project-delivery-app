@@ -49,7 +49,7 @@ function Admin() {
 
   useEffect(() => {
     verifyNewUserCredentials();
-  }, [newUserData]);
+  }, [newUserData, verifyNewUserCredentials]);
 
   useEffect(() => {
     getAllUsers();
@@ -88,9 +88,10 @@ function Admin() {
   };
 
   const errorDivMessage = (
-    <div>
+    <div className="message-error mb-3 m-2 md: w-full w-11/12">
       <p data-testid={ dataTestIds[75] }>{ errorMessage }</p>
       <button
+        className="ml-2 font-bold"
         type="button"
         onClick={ () => setErrorMessage() }
       >
@@ -103,48 +104,58 @@ function Admin() {
   return (
     <main>
       <Navbar role={ adminData.role } />
-      <section>
-        <p>Cadastrar novo usuário</p>
-        <TextInput
-          type="text"
-          name="nome"
-          onChange={ handleChange }
-          labelText="Nome"
-          placeholderText="Nome completo"
-          dataTestId={ dataTestIds[65] }
-        />
-        <TextInput
-          type="text"
-          name="email"
-          onChange={ handleChange }
-          labelText="Email"
-          placeholderText="email@email.com"
-          dataTestId={ dataTestIds[66] }
-        />
-        <TextInput
-          type="password"
-          name="password"
-          onChange={ handleChange }
-          labelText="Senha"
-          placeholderText="senha"
-          dataTestId={ dataTestIds[78] }
-        />
-        <DropDownList
-          options={ options }
-          name="role"
-          dataTestId={ dataTestIds[68] }
-          onChange={ handleChange }
-        />
-        <LargeButton
-          buttonText="CADASTRAR"
-          onClick={ handleClick }
-          isDisabled={ disableButton }
-          dataTestId={ dataTestIds[69] }
-        />
-        { errorMessage && errorDivMessage }
-      </section>
-      <h2>Lista de Usuários</h2>
-      <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
+      <div className="container-box">
+        <p className="mt-10 title-box">Cadastrar novo usuário</p>
+        <section className="box-border-90 md:justify-around flex-wrap">
+          <TextInput
+            type="text"
+            name="nome"
+            onChange={ handleChange }
+            labelText="Nome"
+            placeholderText="Nome completo"
+            dataTestId={ dataTestIds[65] }
+            classStyle="mt-2 ml-2 md:w-1/5 w-11/12 text-xs"
+          />
+          <TextInput
+            type="text"
+            name="email"
+            onChange={ handleChange }
+            labelText="Email"
+            placeholderText="email@email.com"
+            dataTestId={ dataTestIds[66] }
+            classStyle="mt-2 md:w-1/5 text-xs w-11/12"
+          />
+          <TextInput
+            type="password"
+            name="password"
+            onChange={ handleChange }
+            labelText="Senha"
+            placeholderText="senha"
+            dataTestId={ dataTestIds[78] }
+            classStyle="md:w-1/5 mt-2 text-xs w-11/12"
+          />
+          <DropDownList
+            options={ options }
+            name="role"
+            dataTestId={ dataTestIds[68] }
+            onChange={ handleChange }
+            classStyle="md:w-1/5 mt-2 text-xs w-11/12"
+            labelText="Tipo"
+          />
+          <LargeButton
+            buttonText="CADASTRAR"
+            onClick={ handleClick }
+            isDisabled={ disableButton }
+            dataTestId={ dataTestIds[69] }
+            classStyle="mr-2 md:w-1/6 btn-green w-11/12 md:mb-1 mb-3"
+          />
+          { errorMessage && errorDivMessage }
+        </section>
+        <h2 className="mt-5 title-box">Lista de Usuários</h2>
+        <div className="box-border-90 mb-10">
+          <UsersTable list={ usersList } handleRemove={ handleRemoveClick } />
+        </div>
+      </div>
     </main>
   );
 }

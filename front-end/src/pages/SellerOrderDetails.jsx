@@ -7,7 +7,10 @@ import api from '../services/api';
 import Navbar from '../components/Navbar';
 import ProductsTable from '../components/ProductsTable';
 import transformDate from '../utils/transformDate';
+import CardTotal from '../components/CardTotal';
 import transformOrderNumber from '../utils/transformOrderNumber';
+import { getColorStatus } from '../utils/colorsStatus';
+import LabelText from '../components/LabelText';
 
 const socket = io.connect('http://localhost:3002/');
 
@@ -68,40 +71,56 @@ function SellerOrderDetails() {
   return (
     <div>
       <Navbar role={ userData.role } />
-      <p>Detalhe do Pedido</p>
-      <div>
-        <p data-testid={ dataTestIds[54] }>{ transformOrderNumber(myOrder.id) }</p>
-        <p data-testid={ dataTestIds[56] }>{ myOrder.saleDate }</p>
-        <p data-testid={ dataTestIds[55] }>{ myOrder.status }</p>
-        <button
-          type="button"
-          data-testid={ dataTestIds[57] }
-          value="Preparando"
-          disabled={ myOrder.status !== 'Pendente' }
-          onClick={ clickChangeSaleStatus }
-        >
-          PREPARAR PEDIDO
-        </button>
-        <button
-          type="button"
-          data-testid={ dataTestIds[58] }
-          value="Em Trânsito"
-          disabled={ myOrder.status !== 'Preparando' }
-          onClick={ clickChangeSaleStatus }
-        >
-          SAIU PARA ENTREGA
-        </button>
-      </div>
-      <ProductsTable listItems={ myItems } testIds={ sellerDataTestIds } />
-      <div>
-        <p>
-          R$
-          <span
-            data-testid={ dataTestIds[64] }
-          >
-            { `${myOrder.totalPrice}` }
-          </span>
-        </p>
+      <div className="container-box">
+        <p className="mt-10 title-box"> Detalhe do Pedido</p>
+        <div className="box-border-90 flex-col">
+          <div className="flex w-full bg-gray-100 flex-wrap">
+            <LabelText
+              classStyle="ml-2 mr-4 mt-2 font-bold text-base"
+              textLabel="PEDIDO "
+              dataTestId={ dataTestIds[54] }
+              textSpan={ transformOrderNumber(myOrder.id) }
+            />
+
+            <p
+              className="data-label"
+              data-testid={ dataTestIds[56] }
+            >
+              {myOrder.saleDate}
+            </p>
+            <p
+              className={ `mt-2 status-generico ${getColorStatus(myOrder.status)}` }
+              data-testid={ dataTestIds[55] }
+            >
+              {myOrder.status}
+            </p>
+            <button
+              type="button"
+              data-testid={ dataTestIds[57] }
+              value="Preparando"
+              disabled={ myOrder.status !== 'Pendente' }
+              className="btn-generico ml-auto btn-green-ligth  mb-2"
+              onClick={ clickChangeSaleStatus }
+            >
+              PREPARAR PEDIDO
+            </button>
+            <button
+              type="button"
+              data-testid={ dataTestIds[58] }
+              value="Em Trânsito"
+              disabled={ myOrder.status !== 'Preparando' }
+              className="btn-generico btn-green-dark ml-auto"
+              onClick={ clickChangeSaleStatus }
+            >
+              SAIU PARA ENTREGA
+            </button>
+          </div>
+          <ProductsTable listItems={ myItems } testIds={ sellerDataTestIds } />
+          <CardTotal
+            dataTestId={ dataTestIds[64] }
+            totalCart={ `${myOrder.totalPrice}` }
+          />
+        </div>
       </div>
     </div>
   );
