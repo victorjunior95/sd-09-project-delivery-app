@@ -51,6 +51,7 @@ const Login = () => {
     <section className="login-form">
       <div className="fields">
         { invalidUser && errorMsg() }
+        <h1>Pingalivery 1.0</h1>
         <label htmlFor="email">
           Email
           <input
@@ -73,27 +74,28 @@ const Login = () => {
             onChange={ ({ target }) => setPassword(target.value) }
           />
         </label>
+        <div className="buttons">
+          <button
+            type="button"
+            id="login"
+            className="login"
+            data-testid="common_login__button-login"
+            onClick={ handleClickLogin }
+            disabled={ disableButton }
+          >
+            Entrar
+          </button>
 
-        <button
-          type="button"
-          id="login"
-          className="login"
-          data-testid="common_login__button-login"
-          onClick={ handleClickLogin }
-          disabled={ disableButton }
-        >
-          Entrar
-        </button>
-
-        <button
-          type="button"
-          id="register"
-          className="register"
-          data-testid="common_login__button-register"
-          onClick={ () => history.push('/register') }
-        >
-          Ainda não tenho conta
-        </button>
+          <button
+            type="button"
+            id="register"
+            className="register"
+            data-testid="common_login__button-register"
+            onClick={ () => history.push('/register') }
+          >
+            Ainda não tenho conta
+          </button>
+        </div>
         { redirectTo && chooseRouteToRedirect() }
       </div>
     </section>

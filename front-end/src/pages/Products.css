@@ -1,6 +1,8 @@
 .wrapper-card-product {
   display: flex;
+  flex-flow: row wrap;
   height: 30vh;
   justify-content: space-around;
+  margin-top: 50px;
   width: 100%;
 }
