@@ -63,18 +63,16 @@ function Login() {
       setErrorMessage('');
       localStorage.setItem('user', JSON.stringify(result));
       history.push(userRedirect[result.role]);
-      // switch (result.role) {
-      // case 'administrator':
-      //   history.push('/admin/manage');
-      //   break;
-      // case 'seller':
-      //   history.push('/seller/orders');
-      //   break;
-      // default:
-      //   history.push('/customer/products');
-      //   break;
-      // }
     }
+  };
+
+  const clearFields = () => {
+    setLoginData({ email: '', password: '' });
+    const email = document.getElementById('email');
+    email.value = '';
+    const password = document.getElementById('password');
+    password.value = '';
+    setErrorMessage('');
   };
 
   const errorDivMessage = (
@@ -83,7 +81,7 @@ function Login() {
       <button
         className="ml-2 font-bold"
         type="button"
-        onClick={ () => setErrorMessage() }
+        onClick={ clearFields }
       >
         Sair
       </button>
