@@ -44,11 +44,21 @@ const findSellerById = async (id) => {
   const seller = await user.findOne({ where: { id } });
   return seller;
 };
-const changeStatusDelivery = async (id) => {
-  const status = 'Entregue';
-  await sale.update({ status }, { where: { id } });
+
+const changeStatusDelivery = async (id, status) => {
+  const statusOrder = status === undefined ? 'Entregue' : status;
+  console.log(statusOrder);
+  await sale.update({ status: statusOrder }, { where: { id } });
   const order = await sale.findOne({ where: { id } });
+  console.log(order);
   return order;
+};
+
+const getAllOrders = async (userId) => {
+  const result = await sale.findAll({
+    where: { userId },
+  });
+  return result;
 };
 
 module.exports = {
@@ -57,4 +67,5 @@ module.exports = {
   findOrderById,
   findSellerById,
   changeStatusDelivery,
+  getAllOrders,
 };
