@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import socket from '../services/api/socket';
 /* import buttonChangeStatus from './buttonChangeStatus'; */
 
 const DetailsCard = () => {
   const [lastOrders, setlastOrders] = useState([]);
   const [lastAllOrders, setAlllastOrders] = useState([]);
   const [infoSeller, setiInfoSeller] = useState([]);
-  const [infoState, setInfoState] = useState([]);
+  const [infoState, setInfoState] = useState('Pendente');
+  const [disabled, setDisabled] = useState(true);
   console.log(lastOrders);
+
   const { id } = useParams();
+
+  const defineDisabledButtons = (stateStatus) => {
+    if (stateStatus === 'Em Trânsito') {
+      setDisabled(false);
+    } else setDisabled(true);
+  };
+
   const user = JSON.parse(localStorage.getItem('user'));
   const { token } = user;
   const headers = {
@@ -23,6 +33,8 @@ const DetailsCard = () => {
     };
     const theSale = await fetch(`http://localhost:3001/customer/orders/${id}`, orderBody);
     const theResponse = await theSale.json();
+    console.log(theResponse.status);
+    setInfoState(theResponse.status);
     const theSeller = await fetch(`http://localhost:3001/customer/orders/seller/${theResponse.sellerId}`, orderBody);
     const theResponseSeller = await theSeller.json();
     // console.log('Aqui', theResponseSeller);
@@ -31,19 +43,16 @@ const DetailsCard = () => {
     setlastOrders(theResponse.products);
     setAlllastOrders(theResponse);
   };
+
   const submitOrderChangeStatus = async () => {
-    const orderBody = {
-      method: 'PUT',
-      headers,
-    };
-    const status = await fetch(`http://localhost:3001/customer/orders/changestatus/${id}`, orderBody);
-    const theResponseStatus = await status.json();
-    setInfoState(theResponseStatus);
+    socket.emit('changeStatusOrder', 'Entregue', id);
   };
+
   const rP = (numero) => {
     const x = String(numero).replace('.', ',');
     return x;
   };
+
   const formatDate = (data) => {
     const NUMBERMAX = 10;
     const NUMBERANO = 4;
@@ -56,11 +65,25 @@ const DetailsCard = () => {
     const result = `${DIA}/${MES}/${ANO}`;
     return result;
   };
+
   useEffect(() => {
+    defineDisabledButtons(infoState);
+  }, [lastAllOrders]);
+
+  useEffect(() => {
+    socket.on('changeStatusOrder', (status, idFromSocket) => {
+      if (idFromSocket === id) {
+        setInfoState(status);
+        defineDisabledButtons(status);
+      }
+    });
+
     submitOrder();
   }, []);
+
   const TESTID38 = 'customer_order_details__element-order-details-label-seller-name';
   const TESTID40 = 'customer_order_details__element-order-details-label-delivery-status';
+
   return (
     <div className="CheckoutCard-wrapper-table">
       <table className="CheckoutCard-table">
@@ -90,11 +113,11 @@ const DetailsCard = () => {
             <th
               data-testid={ TESTID40 }
             >
-              { infoState.status ? infoState.status : lastAllOrders.status }
+              { infoState }
             </th>
             <button
               type="button"
-              disabled="true"
+              disabled={ disabled }
               data-testid="customer_order_details__button-delivery-check"
               onClick={ () => submitOrderChangeStatus() }
             >

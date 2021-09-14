@@ -51,7 +51,7 @@ export const getOrders = async (payload, setOrders, setError) => {
     });
 };
 
-export const getOrderById = async (payload, setOrder, setError) => {
+export const getOrderById = async (payload, setOrder, setError, setStatusOrder) => {
   const { token, id } = payload;
 
   const Myheaders = {
@@ -69,6 +69,7 @@ export const getOrderById = async (payload, setOrder, setError) => {
         setError(response.message);
       } else {
         setOrder(response);
+        setStatusOrder(response.status);
       }
     });
 };

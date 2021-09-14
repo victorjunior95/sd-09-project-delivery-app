@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, createUser, deleteUser } from '../services/api/index';
 import NavBar from '../components/NavBar';
+import './Admin.css';
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
@@ -138,6 +139,7 @@ const Admin = () => {
       </select>
 
       <button
+        className="btnCadastrar"
         type="button"
         disabled={ disableButton }
         onClick={ handleClick }
@@ -166,7 +168,7 @@ const Admin = () => {
   );
 
   return (
-    <div className="">
+    <div className="bodyAdmin">
       <NavBar
         userType={ role }
         userName={ name }
