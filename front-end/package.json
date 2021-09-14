@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "with-env": "SKIP_PREFLIGHT_CHECK=true",
-    "start": "craco start",
+    "start": "npm run with-env craco start",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
     "build": "npm run with-env craco build",
     "test": "npm run with-env craco test -- --runInBand --detectOpenHandles --verbose",
