@@ -1,7 +1,6 @@
 .main-wrapper-AllOrders {
   display: flex;
   flex-flow: column wrap;
-  text-align: center;
 }
 
 .AllOrders-container {
@@ -10,4 +9,6 @@
   flex-flow: row wrap;
   justify-content: space-around;
   margin: 1em;
+  text-align: center;
 }
+
