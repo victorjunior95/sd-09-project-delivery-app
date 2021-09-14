@@ -3,11 +3,14 @@ import { useParams } from 'react-router';
 import moment from 'moment';
 import NavBar from '../components/NavBar';
 import { getOrderById } from '../services/api';
+import socket from '../services/api/socket';
 
 const SellerDetails = () => {
   const [order, setOrder] = useState([]);
   const [error, setError] = useState(false);
-  const [disabled, setDisable] = useState(false);
+  const [disabled, setDisable] = useState(true);
+  const [prepareDisable, setPrepareDisable] = useState(false);
+  const [statusOrder, setStatusOrder] = useState('');
   const { products, totalPrice } = order;
 
   const { id } = useParams();
@@ -18,8 +21,33 @@ const SellerDetails = () => {
     token: user.token,
   };
 
+  const defineDisabledButtons = (currentStatus) => {
+    if (currentStatus === 'Pendente') {
+      setPrepareDisable(false);
+      setDisable(true);
+    } else if (currentStatus === 'Preparando') {
+      setPrepareDisable(true);
+      setDisable(false);
+    } else {
+      setPrepareDisable(true);
+      setDisable(true);
+    }
+  };
+
   useEffect(() => {
-    getOrderById(orderDetails, setOrder, setError);
+    if (order.status !== undefined) {
+      defineDisabledButtons(statusOrder);
+    }
+  }, [order, statusOrder]);
+
+  useEffect(() => {
+    socket.on('changeStatusOrder', (status, idFromSocket) => {
+      if (idFromSocket === id) {
+        setStatusOrder(status);
+        defineDisabledButtons(status);
+      }
+    });
+    getOrderById(orderDetails, setOrder, setError, setStatusOrder);
   }, []);
 
   return (
@@ -37,12 +65,13 @@ const SellerDetails = () => {
           ref={ useRef() }
           data-testid="seller_order_details__element-order-details-label-delivery-status"
         >
-          { order.status }
+          { statusOrder === 'Pendente' ? order.status : statusOrder }
         </li>
         <button
           type="button"
           data-testid="seller_order_details__button-preparing-check"
-          onClick={ () => setDisable(true) }
+          disabled={ prepareDisable }
+          onClick={ () => socket.emit('changeStatusOrder', 'Preparando', id) }
         >
           PREPARAR PEDIDO
         </button>
@@ -50,6 +79,7 @@ const SellerDetails = () => {
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
           disabled={ disabled }
+          onClick={ () => socket.emit('changeStatusOrder', 'Em Trânsito', id) }
         >
           SAIU PARA ENTREGA
         </button>
