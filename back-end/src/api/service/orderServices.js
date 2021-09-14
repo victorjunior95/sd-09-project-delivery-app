@@ -46,7 +46,7 @@ const findSellerById = async (id) => {
 };
 
 const changeStatusDelivery = async (id, status) => {
-  let statusOrder = status === undefined ? 'Entregue' : status
+  const statusOrder = status === undefined ? 'Entregue' : status;
   console.log(statusOrder);
   await sale.update({ status: statusOrder }, { where: { id } });
   const order = await sale.findOne({ where: { id } });

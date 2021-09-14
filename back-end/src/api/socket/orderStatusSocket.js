@@ -2,7 +2,7 @@ const { changeStatusDelivery } = require('../service/orderServices');
 
 const orderStatus = (io) => {
   io.on('connection', (socket) => {
-    console.log('nova conexão' + socket.id);
+    console.log(`nova conexão ${ socket.id }`);
 
     socket.on('changeStatusOrder', async (status, id) => {
       console.log(status, id);
