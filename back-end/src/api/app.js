@@ -21,10 +21,7 @@ const io = require('socket.io')(httpServer, {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   }});
 
-  io.on('connection', (socket) => {
-    console.log(`Usuário conectado. ID: ${socket.id} `);
-  });
-  
+ require('./socket/server')(io);
 
 app.use('/images', express.static(path.join(__dirname, '..', '..', 'public')));
 app.get('/coffee', (_req, res) => res.status(418).end());
