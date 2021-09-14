@@ -1,0 +1,25 @@
+.bodyAdmin {
+  background-color: cadetblue;
+  height: 100vh;
+  width: 100vw;
+}
+
+.btnCadastrar {
+  height: 25px;
+  margin-left: 10px;
+}
+
+.userForm {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+span {
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+table {
+  margin: 0 25vw;
+}
