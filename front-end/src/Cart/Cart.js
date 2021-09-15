@@ -1,3 +1,4 @@
+import './Cart.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../context/loginContext';
