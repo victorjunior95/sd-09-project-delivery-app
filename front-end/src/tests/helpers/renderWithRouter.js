@@ -1,11 +1,8 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
 
-const renderWithRouter = (component,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}) => ({
-  ...render(<Router history={ history }>{component}</Router>), history,
-});
-
+const renderWithRouter = (component, initialEntries = ['/']) => (
+  <Router history={ createMemoryHistory({ initialEntries }) }>{component}</Router>
+);
 export default renderWithRouter;

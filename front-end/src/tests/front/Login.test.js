@@ -1,13 +1,14 @@
 import React from 'react';
 import {  fireEvent } from '@testing-library/react';
 import renderWithRouter from './../helpers/renderWithRouter';
+import renderWithContext from '../helpers/renderWithContext';
 import App from './../../App';
 import dataTestIds from '../../utils/dataTestIds';
 
 describe('Tela Login', () => {
 
   test('Verifica componentes tela de Login', async () => {
-    const { getByText, getByTestId, history  } = renderWithRouter(<App />);
+    const { getByText, getByTestId  } = renderWithContext(renderWithRouter(<App />,['/login']));
 
     const home = getByText('Bem vindo(a)!');
     expect(home).toBeInTheDocument();
@@ -31,9 +32,6 @@ describe('Tela Login', () => {
     expect(ButtonRegister).toBeInTheDocument();
 
     fireEvent.click(await ButtonRegister);
-    history.push('/register');
-    const pathnameRegister = history.location.pathname;
-    expect(pathnameRegister).toBe('/register');
     const registrer = getByText('Cadastro');
     expect(registrer).toBeInTheDocument();
   });

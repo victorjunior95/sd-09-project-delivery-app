@@ -1,18 +1,14 @@
 import React from 'react';
 import {  fireEvent } from '@testing-library/react';
 import renderWithRouter from './../helpers/renderWithRouter';
+import renderWithContext from '../helpers/renderWithContext';
 import App from './../../App';
 import dataTestIds from '../../utils/dataTestIds';
 
 describe('Tela Register', () => {
 
   test('Verifica componentes tela de Registro', async () => {
-    const { getByText, getByTestId  } = renderWithRouter(<App />, { route: '/register' });
-    const ButtonRegister = getByTestId(dataTestIds[4]);
-    expect(ButtonRegister).toBeInTheDocument();
-
-    fireEvent.click(await ButtonRegister);
-
+    const { getByText, getByTestId  } = renderWithContext(renderWithRouter(<App />, ['/register']));
     const register = getByText('Cadastro');
     expect(register).toBeInTheDocument();
 

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import Provider from './context/Provider';
-
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
@@ -17,25 +15,21 @@ import './App.css';
 
 function App() {
   return (
-    <Provider>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/login" component={ Login } />
-          <Route exact path="/">
-            <Redirect to="/login" component={ Login } />
-          </Route>
-          <Route path="/register" component={ Register } />
-          <Route path="/customer/products" component={ Products } />
-          <Route path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/orders/:id" component={ CustomerOrderDetails } />
-          <Route path="/customer/orders" component={ OrdersPage } />
-          <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
-          <Route path="/seller/orders" component={ OrdersPage } />
-          <Route path="/admin/manage" component={ Admin } />
-          <Route component={ NotFound } />
-        </Switch>
-      </BrowserRouter>
-    </Provider>
+    <Switch>
+      <Route path="/login" component={ Login } />
+      <Route exact path="/">
+        <Redirect to="/login" component={ Login } />
+      </Route>
+      <Route path="/register" component={ Register } />
+      <Route path="/customer/products" component={ Products } />
+      <Route path="/customer/checkout" component={ Checkout } />
+      <Route path="/customer/orders/:id" component={ CustomerOrderDetails } />
+      <Route path="/customer/orders" component={ OrdersPage } />
+      <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
+      <Route path="/seller/orders" component={ OrdersPage } />
+      <Route path="/admin/manage" component={ Admin } />
+      <Route component={ NotFound } />
+    </Switch>
   );
 }
 
