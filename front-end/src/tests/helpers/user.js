@@ -1,4 +1,7 @@
-const tokenCustomer = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MywibmFtZSI6IkNsaWVudGUgWsOpIEJpcml0YSIsImVtYWlsIjoiemViaXJpdGFAZW1haWwuY29tIiwicm9sZSI6ImN1c3RvbWVyIn0sImlhdCI6MTYzMTgwMTI4MiwiZXhwIjoxNjMxODg3NjgyfQ.auV_6260lvpVukLPGP3is9g1hZUPDxBJIG0F61iHors';
+const tokenCustomer = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+  + '.eyJ1c2VyRGF0YSI6eyJpZCI6MywibmFtZSI6IkNsaWVudGUgWsOpIEJpcml0YSIsImVtYWlsIjoiemViaXJ'
+  + 'pdGFAZW1haWwuY29tIiwicm9sZSI6ImN1c3RvbWVyIn0sImlhdCI6MTYzMTgwMTI4MiwiZXhwIjoxNjMxODg'
+  + '3NjgyfQ.auV_6260lvpVukLPGP3is9g1hZUPDxBJIG0F61iHors';
 const tokenSeller = '';
 const tokenAdmin = '';
 
