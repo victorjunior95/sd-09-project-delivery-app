@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import DescriptionsBar from '../../../components/DescriptionsBar';
+import DescriptionsBarr from '../../../components/DescriptionsBarr';
 import Navbar from '../../../components/Navbar';
 import PrimaryButton from '../../../components/PrimaryButton';
 import Input from '../../../components/Input';
@@ -94,7 +94,7 @@ const Checkout = () => {
             const totPrice = (Math.round(multPrice * 100) / 100).toFixed(2);
             const toStringNumber = totPrice.toString().replace('.', ',');
 
-            return (<DescriptionsBar
+            return (<DescriptionsBarr
               key={ Math.random() }
               id={ index }
               itemId={ itemId }

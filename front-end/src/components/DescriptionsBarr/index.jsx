@@ -3,7 +3,7 @@ import P from 'prop-types';
 
 import style from './descriptionsContainer.module.scss';
 
-const DescriptionsBarr = ({
+const DescriptionsBar = ({
   isAboutUser = false,
   shouldDeleteApear = true,
   id,
@@ -19,7 +19,7 @@ const DescriptionsBarr = ({
   dataTestIdUserTypeOrValue,
   dataTestIdDeleteOrPrice,
   dataTestIdRemove,
-  deleteUser,
+
 }) => {
   let gridStyle = null;
 
@@ -52,14 +52,13 @@ const DescriptionsBarr = ({
       >
         { userTypeOrValue }
       </span>
-      <button
+      <span
         type="button"
         className={ style.fifthGrid }
         data-testid={ dataTestIdDeleteOrPrice }
-        onClick={ deleteUser }
       >
         { deleteOrPrice }
-      </button>
+      </span>
       { shouldDeleteApear && (
         <div className={ style.sixthGrid }>
           <button
@@ -75,9 +74,9 @@ const DescriptionsBarr = ({
   );
 };
 
-export default DescriptionsBarr;
+export default DescriptionsBar;
 
-DescriptionsBarr.propTypes = {
+DescriptionsBar.propTypes = {
   isAboutUser: P.string,
   shouldDeleteApear: P.bool.isRequired,
   id: P.number.isRequired,
@@ -93,13 +92,11 @@ DescriptionsBarr.propTypes = {
   dataTestIdDeleteOrPrice: P.string.isRequired,
   removeItem: P.func,
   dataTestIdRemove: P.string,
-  deleteUser: P.func,
 };
 
-DescriptionsBarr.defaultProps = {
+DescriptionsBar.defaultProps = {
   isAboutUser: '',
   itemId: 0,
   removeItem: () => {},
-  deleteUser: () => {},
   dataTestIdRemove: '',
 };

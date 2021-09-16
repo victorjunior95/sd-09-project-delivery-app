@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import P from 'prop-types';
 
-import DescriptionsBar from '../../../components/DescriptionsBar';
+import DescriptionsBarr from '../../../components/DescriptionsBarr';
 import GridOrderDetails from '../../../components/GridOrderDetails';
 import InfoOrderDetails from '../../../components/InfoOrderDetails';
 import NavBar from '../../../components/Navbar';
@@ -75,7 +75,7 @@ const SellerOrderDetails = ({ match }) => {
                     const totalPriceString = priceRound.toString().replace('.', ',');
                     const priceString = price.toString().replace('.', ',');
                     return (
-                      <DescriptionsBar
+                      <DescriptionsBarr
                         key={ productId }
                         id={ productIndex }
                         userOrProductName={ name }

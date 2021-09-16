@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import P from 'prop-types';
 
-import DescriptionsBar from '../../../components/DescriptionsBar';
+import DescriptionsBarr from '../../../components/DescriptionsBarr';
 import GridOrderDetails from '../../../components/GridOrderDetails';
 import InfoOrderDetails from '../../../components/InfoOrderDetails';
 import NavBar from '../../../components/Navbar';
@@ -45,7 +45,7 @@ const CustomerOrderDetails = ({ match }) => {
           const totPrice = (Math.round(multPrice * 100) / 100).toFixed(2);
           const toStringNumber = totPrice.toString().replace('.', ',');
           return (
-            <DescriptionsBar
+            <DescriptionsBarr
               key={ id }
               id={ index }
               userOrProductName={ description }
@@ -118,7 +118,7 @@ const CustomerOrderDetails = ({ match }) => {
                       const totalPriceString = priceRound.toString().replace('.', ',');
                       const priceString = price.toString().replace('.', ',');
                       return (
-                        <DescriptionsBar
+                        <DescriptionsBarr
                           key={ productId }
                           id={ i }
                           userOrProductName={ name }
