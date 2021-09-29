@@ -3,43 +3,42 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
-import fetchGET from '../services/fetchGET';
-import { productsAction } from '../actions/checkoutAction';
+// import fetchGET from '../services/fetchGET';
+import '../styles/Cards.css';
+import { productsThunk } from '../actions/productsAction';
 
 class Products extends React.Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      products: [],
-    };
+  //   this.state = {
+  //     products: [],
+  //   };
 
-    this.fetchAPI = this.fetchAPI.bind(this);
-  }
+  //   this.fetchAPI = this.fetchAPI.bind(this);
+  // }
 
   componentDidMount() {
-    this.fetchAPI();
+    const { setAllProducts } = this.props;
+    setAllProducts();
+    // this.fetchAPI();
   }
 
-  async fetchAPI() {
-    try {
-      const result = await fetchGET('products');
-      this.setState({
-        products: result,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async fetchAPI() {
+  //   const result = await fetchGET('products');
+  //   this.setState({
+  //     products: result,
+  //   });
+  // }
 
   render() {
-    const { products } = this.state;
-    const { getTotalPrice, getProducts } = this.props;
+    const { getTotalPrice, getProducts, getAllProducts } = this.props;
 
     return (
       <div>
         <Link to="/customer/checkout">
           <button
+            className="buttonCarrinho"
             type="button"
             disabled={ !getProducts.length > 0 }
             data-testid="customer_products__button-cart"
@@ -52,8 +51,8 @@ class Products extends React.Component {
             </span>
           </button>
         </Link>
-        <div>
-          { products.map((product, index) => (
+        <div className="allCard">
+          { getAllProducts.map((product, index) => (
             <ProductCard
               key={ `${product}${index}` }
               product={ product }
@@ -68,10 +67,11 @@ class Products extends React.Component {
 const mapStateToProps = (state) => ({
   getProducts: state.checkoutReducer.productsBuy,
   getTotalPrice: state.checkoutReducer.totalPrice,
+  getAllProducts: state.productsReducer.allProduct,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setProducts: (productsBuy) => dispatch(productsAction(productsBuy)),
+  setAllProducts: () => dispatch(productsThunk()),
 });
 
 Products.propTypes = ({
